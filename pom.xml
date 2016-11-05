@@ -69,7 +69,7 @@
 
                         <archive>
                             <manifest>
-                                <mainClass>com.cetc.di.hellocetc.App</mainClass>
+                                <mainClass>testTime</mainClass>
                                 <addClasspath>true</addClasspath>
                                 <classpathPrefix>lib/</classpathPrefix>
                             </manifest>
