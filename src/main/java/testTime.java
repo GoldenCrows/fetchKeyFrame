@@ -52,7 +52,7 @@ public class testTime {
         Long x1 = new Date().getTime();
         System.out.println();
         testTime.downloadVedio("/cj/avi.avi","/home/cj/avi.avi");
-        opencv_videoio.CvCapture cvCapture = cvCreateFileCapture("/home/cj/avi.avi");
+        opencv_videoio.CvCapture cvCapture = cvCreateFileCapture("d:/avi.avi");
         cvSetCaptureProperty(cvCapture, CV_CAP_PROP_POS_MSEC, 100000);
         Long x2 = new Date().getTime();
 
@@ -63,7 +63,7 @@ public class testTime {
         Long x3 = new Date().getTime();
 
         System.out.println(x3 - x2);
-        cvSaveImage("/home/cj/img/" + new Date().getTime()+ ".jpg", frammeImage);
+        cvSaveImage("d://aaa" + new Date().getTime()+ ".jpg", frammeImage);
 
     }
 
