@@ -2,9 +2,7 @@ package com.bupt.videometadata.util;
 
 import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 /**
  * @author Che Jin <jotline@github>
@@ -20,5 +18,11 @@ public class SerializableUtil {
         return result;
     }
 
-    
+    public static Object deserializeBytes(byte[]bytes) throws IOException, ClassNotFoundException {
+        ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
+        ObjectInputStream ois=new ObjectInputStream(bais);
+        return ois.readObject();
+    }
+
+
 }
