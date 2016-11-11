@@ -9130,7 +9130,7 @@ public final class Message {
     // @@protoc_insertion_point(class_scope:AddEnum)
   }
 
-  public interface AddSTextOrBuilder
+  public interface AddTextOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
     // required string geohash = 1;
@@ -9197,24 +9197,24 @@ public final class Message {
     com.google.protobuf.ByteString getName();
   }
   /**
-   * Protobuf type {@code AddSText}
+   * Protobuf type {@code AddText}
    */
-  public static final class AddSText extends
+  public static final class AddText extends
       com.google.protobuf.GeneratedMessage
-      implements AddSTextOrBuilder {
-    // Use AddSText.newBuilder() to construct.
-    private AddSText(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      implements AddTextOrBuilder {
+    // Use AddText.newBuilder() to construct.
+    private AddText(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private AddSText(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+    private AddText(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
-    private static final AddSText defaultInstance;
-    public static AddSText getDefaultInstance() {
+    private static final AddText defaultInstance;
+    public static AddText getDefaultInstance() {
       return defaultInstance;
     }
 
-    public AddSText getDefaultInstanceForType() {
+    public AddText getDefaultInstanceForType() {
       return defaultInstance;
     }
 
@@ -9224,7 +9224,7 @@ public final class Message {
         getUnknownFields() {
       return this.unknownFields;
     }
-    private AddSText(
+    private AddText(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -9286,28 +9286,28 @@ public final class Message {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.bupt.videometadata.proto.Message.internal_static_AddSText_descriptor;
+      return com.bupt.videometadata.proto.Message.internal_static_AddText_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.bupt.videometadata.proto.Message.internal_static_AddSText_fieldAccessorTable
+      return com.bupt.videometadata.proto.Message.internal_static_AddText_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.bupt.videometadata.proto.Message.AddSText.class, com.bupt.videometadata.proto.Message.AddSText.Builder.class);
+              com.bupt.videometadata.proto.Message.AddText.class, com.bupt.videometadata.proto.Message.AddText.Builder.class);
     }
 
-    public static com.google.protobuf.Parser<AddSText> PARSER =
-        new com.google.protobuf.AbstractParser<AddSText>() {
-      public AddSText parsePartialFrom(
+    public static com.google.protobuf.Parser<AddText> PARSER =
+        new com.google.protobuf.AbstractParser<AddText>() {
+      public AddText parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AddSText(input, extensionRegistry);
+        return new AddText(input, extensionRegistry);
       }
     };
 
     @java.lang.Override
-    public com.google.protobuf.Parser<AddSText> getParserForType() {
+    public com.google.protobuf.Parser<AddText> getParserForType() {
       return PARSER;
     }
 
@@ -9522,53 +9522,53 @@ public final class Message {
       return super.writeReplace();
     }
 
-    public static com.bupt.videometadata.proto.Message.AddSText parseFrom(
+    public static com.bupt.videometadata.proto.Message.AddText parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.bupt.videometadata.proto.Message.AddSText parseFrom(
+    public static com.bupt.videometadata.proto.Message.AddText parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.bupt.videometadata.proto.Message.AddSText parseFrom(byte[] data)
+    public static com.bupt.videometadata.proto.Message.AddText parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.bupt.videometadata.proto.Message.AddSText parseFrom(
+    public static com.bupt.videometadata.proto.Message.AddText parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.bupt.videometadata.proto.Message.AddSText parseFrom(java.io.InputStream input)
+    public static com.bupt.videometadata.proto.Message.AddText parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.bupt.videometadata.proto.Message.AddSText parseFrom(
+    public static com.bupt.videometadata.proto.Message.AddText parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static com.bupt.videometadata.proto.Message.AddSText parseDelimitedFrom(java.io.InputStream input)
+    public static com.bupt.videometadata.proto.Message.AddText parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static com.bupt.videometadata.proto.Message.AddSText parseDelimitedFrom(
+    public static com.bupt.videometadata.proto.Message.AddText parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static com.bupt.videometadata.proto.Message.AddSText parseFrom(
+    public static com.bupt.videometadata.proto.Message.AddText parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static com.bupt.videometadata.proto.Message.AddSText parseFrom(
+    public static com.bupt.videometadata.proto.Message.AddText parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -9577,7 +9577,7 @@ public final class Message {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.bupt.videometadata.proto.Message.AddSText prototype) {
+    public static Builder newBuilder(com.bupt.videometadata.proto.Message.AddText prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -9589,24 +9589,24 @@ public final class Message {
       return builder;
     }
     /**
-     * Protobuf type {@code AddSText}
+     * Protobuf type {@code AddText}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.bupt.videometadata.proto.Message.AddSTextOrBuilder {
+       implements com.bupt.videometadata.proto.Message.AddTextOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.bupt.videometadata.proto.Message.internal_static_AddSText_descriptor;
+        return com.bupt.videometadata.proto.Message.internal_static_AddText_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.bupt.videometadata.proto.Message.internal_static_AddSText_fieldAccessorTable
+        return com.bupt.videometadata.proto.Message.internal_static_AddText_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.bupt.videometadata.proto.Message.AddSText.class, com.bupt.videometadata.proto.Message.AddSText.Builder.class);
+                com.bupt.videometadata.proto.Message.AddText.class, com.bupt.videometadata.proto.Message.AddText.Builder.class);
       }
 
-      // Construct using com.bupt.videometadata.proto.Message.AddSText.newBuilder()
+      // Construct using com.bupt.videometadata.proto.Message.AddText.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9645,23 +9645,23 @@ public final class Message {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.bupt.videometadata.proto.Message.internal_static_AddSText_descriptor;
+        return com.bupt.videometadata.proto.Message.internal_static_AddText_descriptor;
       }
 
-      public com.bupt.videometadata.proto.Message.AddSText getDefaultInstanceForType() {
-        return com.bupt.videometadata.proto.Message.AddSText.getDefaultInstance();
+      public com.bupt.videometadata.proto.Message.AddText getDefaultInstanceForType() {
+        return com.bupt.videometadata.proto.Message.AddText.getDefaultInstance();
       }
 
-      public com.bupt.videometadata.proto.Message.AddSText build() {
-        com.bupt.videometadata.proto.Message.AddSText result = buildPartial();
+      public com.bupt.videometadata.proto.Message.AddText build() {
+        com.bupt.videometadata.proto.Message.AddText result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.bupt.videometadata.proto.Message.AddSText buildPartial() {
-        com.bupt.videometadata.proto.Message.AddSText result = new com.bupt.videometadata.proto.Message.AddSText(this);
+      public com.bupt.videometadata.proto.Message.AddText buildPartial() {
+        com.bupt.videometadata.proto.Message.AddText result = new com.bupt.videometadata.proto.Message.AddText(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -9690,16 +9690,16 @@ public final class Message {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.bupt.videometadata.proto.Message.AddSText) {
-          return mergeFrom((com.bupt.videometadata.proto.Message.AddSText)other);
+        if (other instanceof com.bupt.videometadata.proto.Message.AddText) {
+          return mergeFrom((com.bupt.videometadata.proto.Message.AddText)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.bupt.videometadata.proto.Message.AddSText other) {
-        if (other == com.bupt.videometadata.proto.Message.AddSText.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.bupt.videometadata.proto.Message.AddText other) {
+        if (other == com.bupt.videometadata.proto.Message.AddText.getDefaultInstance()) return this;
         if (other.hasGeohash()) {
           bitField0_ |= 0x00000001;
           geohash_ = other.geohash_;
@@ -9749,11 +9749,11 @@ public final class Message {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.bupt.videometadata.proto.Message.AddSText parsedMessage = null;
+        com.bupt.videometadata.proto.Message.AddText parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.bupt.videometadata.proto.Message.AddSText) e.getUnfinishedMessage();
+          parsedMessage = (com.bupt.videometadata.proto.Message.AddText) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -9992,15 +9992,15 @@ public final class Message {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:AddSText)
+      // @@protoc_insertion_point(builder_scope:AddText)
     }
 
     static {
-      defaultInstance = new AddSText(true);
+      defaultInstance = new AddText(true);
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:AddSText)
+    // @@protoc_insertion_point(class_scope:AddText)
   }
 
   private static com.google.protobuf.Descriptors.Descriptor
@@ -10054,10 +10054,10 @@ public final class Message {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_AddEnum_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
-    internal_static_AddSText_descriptor;
+    internal_static_AddText_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_AddSText_fieldAccessorTable;
+      internal_static_AddText_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -10090,16 +10090,16 @@ public final class Message {
       "e\030\003 \002(\003\022\013\n\003num\030\004 \002(\001\022\014\n\004name\030\005 \002(\014\"^\n\007Ad" +
       "dEnum\022\017\n\007geohash\030\001 \002(\t\022\021\n\tstarttime\030\002 \002(" +
       "\003\022\017\n\007endtime\030\003 \002(\003\022\020\n\010enumItem\030\004 \002(\014\022\014\n\004" +
-      "name\030\005 \002(\014\"[\n\010AddSText\022\017\n\007geohash\030\001 \002(\t\022" +
-      "\021\n\tstarttime\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003\022\014\n\004t" +
-      "ext\030\004 \002(\014\022\014\n\004name\030\005 \002(\014*\233\001\n\007MSGTYPE\022\017\n\013S" +
-      "tore_Video\020\001\022\024\n\020Add_MetaDataType\020\002\022\013\n\007Ad" +
-      "d_Img\020\021\022\020\n\014Add_ImgArray\020\022\022\r\n\tAdd_Video\020\023" +
-      "\022\022\n\016Add_VideoArray\020\024\022\013\n\007Add_Num\020\025\022\014\n\010Add" +
-      "_Enum\020\026\022\014\n\010Add_Text\020\027*]\n\014METADATATYPE\022\007\n",
-      "\003Img\020\001\022\014\n\010ImgArray\020\002\022\t\n\005Video\020\003\022\016\n\nVideo" +
-      "Array\020\004\022\007\n\003Num\020\005\022\010\n\004Enum\020\006\022\010\n\004Text\020\007B\'\n\034" +
-      "com.bupt.videometadata.protoB\007Message"
+      "name\030\005 \002(\014\"Z\n\007AddText\022\017\n\007geohash\030\001 \002(\t\022\021" +
+      "\n\tstarttime\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003\022\014\n\004te" +
+      "xt\030\004 \002(\014\022\014\n\004name\030\005 \002(\014*\233\001\n\007MSGTYPE\022\017\n\013St" +
+      "ore_Video\020\001\022\024\n\020Add_MetaDataType\020\002\022\013\n\007Add" +
+      "_Img\020\021\022\020\n\014Add_ImgArray\020\022\022\r\n\tAdd_Video\020\023\022" +
+      "\022\n\016Add_VideoArray\020\024\022\013\n\007Add_Num\020\025\022\014\n\010Add_" +
+      "Enum\020\026\022\014\n\010Add_Text\020\027*]\n\014METADATATYPE\022\007\n\003",
+      "Img\020\001\022\014\n\010ImgArray\020\002\022\t\n\005Video\020\003\022\016\n\nVideoA" +
+      "rray\020\004\022\007\n\003Num\020\005\022\010\n\004Enum\020\006\022\010\n\004Text\020\007B\'\n\034c" +
+      "om.bupt.videometadata.protoB\007Message"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -10166,11 +10166,11 @@ public final class Message {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_AddEnum_descriptor,
               new java.lang.String[] { "Geohash", "Starttime", "Endtime", "EnumItem", "Name", });
-          internal_static_AddSText_descriptor =
+          internal_static_AddText_descriptor =
             getDescriptor().getMessageTypes().get(10);
-          internal_static_AddSText_fieldAccessorTable = new
+          internal_static_AddText_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-              internal_static_AddSText_descriptor,
+              internal_static_AddText_descriptor,
               new java.lang.String[] { "Geohash", "Starttime", "Endtime", "Text", "Name", });
           return null;
         }

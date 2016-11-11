@@ -99,7 +99,7 @@ message AddEnum {
     required bytes name = 5; //属性名称
 }
 
-message AddSText {
+message AddText {
     required string geohash = 1;
     required int64 starttime = 2;
     required int64 endtime = 3;
