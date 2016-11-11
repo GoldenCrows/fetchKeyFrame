@@ -62,6 +62,12 @@
             <version>1.16.10</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.1.0</version>
+        </dependency>
 
 
     </dependencies>
@@ -69,6 +75,39 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- 使用antrun插件，自动编译protobuf -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                                <mkdir dir="src/main/java/com/bupt/videometadata/proto"/>
+                                <exec failonerror="true" executable="protoc">
+                                    <arg value="--java_out=src/main/java"/>
+                                    <arg value="src/main/proto/Message.proto"/>
+                                </exec>
+                            </tasks>
+                            <sourceRoot>src/main/java/com/bupt/videometadata/proto</sourceRoot>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- The configuration of maven-jar-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -135,5 +174,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

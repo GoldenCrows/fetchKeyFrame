@@ -1,0 +1,109 @@
+option java_package = "com.bupt.videometadata.proto";
+option java_outer_classname = "Message";
+
+//三种类型的消息：存入视频的时候传递视频起始时间和结束时间、给摄像头增加元数据类型的时候、添加元数据。
+enum MSGTYPE {
+    Store_Video = 0x00000001;
+    Add_MetaDataType = 0x00000002;
+    Add_Img = 0x00000011;
+    Add_ImgArray = 0x00000012;
+    Add_Video = 0x00000013;
+    Add_VideoArray = 0x00000014;
+    Add_Num = 0x00000015;
+    Add_Enum = 0x00000016;
+    Add_Text = 0x00000017;
+}
+
+enum METADATATYPE {
+    Img = 0x00000001;
+    ImgArray = 0x00000002;
+    Video = 0x00000003;
+    VideoArray = 0x00000004;
+    Num = 0x00000005;
+    Enum = 0x00000006;
+    Text = 0x00000007;
+}
+
+message StoreVideo {
+    required string geohash = 1;
+    required int64 starttime = 2;
+    required int64 endtime = 3;
+}
+
+message AddMetaDataType {
+    required bytes name = 1;
+    required METADATATYPE type = 2;
+    repeated bytes enumItem = 3; //只对enum类型有用，用来说明enum由哪些item组成
+}
+
+message ImgData {
+    required bytes path = 1;
+    required int64 frame = 2;
+    repeated string coodinates = 3;
+}
+
+message VideoData {
+    required bytes path = 1;
+    required int64 startframe = 2;
+    required int64 endframe = 3;
+    repeated string coodinates = 4;
+}
+
+message AddImg {
+    required string geohash = 1;
+    required int64 starttime = 2;
+    required int64 endtime = 3;
+    required ImgData img = 4;
+    required bytes name = 5; //属性名称
+}
+
+message AddImgArray {
+    required string geohash = 1;
+    required int64 starttime = 2;
+    required int64 endtime = 3;
+    repeated ImgData img = 4;
+    required bytes name = 5; //属性名称
+
+}
+
+message AddVideo {
+    required string geohash = 1;
+    required int64 starttime = 2;
+    required int64 endtime = 3;
+    required VideoData video = 4;
+    required bytes name = 5; //属性名称
+
+}
+
+message AddVideoArray {
+    required string geohash = 1;
+    required int64 starttime = 2;
+    required int64 endtime = 3;
+    repeated VideoData video = 4;
+    required bytes name = 5; //属性名称
+}
+
+message AddNum {
+    required string geohash = 1;
+    required int64 starttime = 2;
+    required int64 endtime = 3;
+    required double num = 4;
+    required bytes name = 5; //属性名称
+}
+
+message AddEnum {
+    required string geohash = 1;
+    required int64 starttime = 2;
+    required int64 endtime = 3;
+    required bytes enumItem = 4;
+    required bytes name = 5; //属性名称
+}
+
+message AddSText {
+    required string geohash = 1;
+    required int64 starttime = 2;
+    required int64 endtime = 3;
+    required bytes text = 4;
+    required bytes name = 5; //属性名称
+
+}

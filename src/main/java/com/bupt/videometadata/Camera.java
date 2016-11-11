@@ -141,3 +141,4 @@ public class Camera implements Serializable {
         return result.toString();
     }
 }
+//接下来可能做什么，有可能spark输入的都是小视频，我需要缓存起来等到一定大小之后合并成大视频。可能使用mp4parse
