@@ -6,6 +6,7 @@ import lombok.Data;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Che Jin <jotline@github>
@@ -26,7 +27,7 @@ public class VideoMetaDataVideoArray extends VideoMetaDataValue implements Seria
         super.readObject(s);
         s.defaultReadObject();
         reinitialize();
-        array=(ArrayList<VideoMetaDataImg>)s.readObject();
+        array=(List<VideoMetaDataVideo>)s.readObject();
 
     }
 
@@ -39,7 +40,7 @@ public class VideoMetaDataVideoArray extends VideoMetaDataValue implements Seria
         metaDataType = VideoMetaDataType.VIDEO_ARRAY;
     }
 
-    private ArrayList<VideoMetaDataImg> array = new ArrayList<VideoMetaDataImg>();
+    private List<VideoMetaDataVideo> array = new ArrayList<VideoMetaDataVideo>();
 
     public String toString() {
         StringBuilder result = new StringBuilder();

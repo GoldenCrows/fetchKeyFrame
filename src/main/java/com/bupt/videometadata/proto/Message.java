@@ -989,6 +989,21 @@ public final class Message {
      * </pre>
      */
     com.google.protobuf.ByteString getEnumItem(int index);
+
+    // required string geohash = 4;
+    /**
+     * <code>required string geohash = 4;</code>
+     */
+    boolean hasGeohash();
+    /**
+     * <code>required string geohash = 4;</code>
+     */
+    java.lang.String getGeohash();
+    /**
+     * <code>required string geohash = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getGeohashBytes();
   }
   /**
    * Protobuf type {@code AddMetaDataType}
@@ -1063,6 +1078,11 @@ public final class Message {
                 mutable_bitField0_ |= 0x00000004;
               }
               enumItem_.add(input.readBytes());
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000004;
+              geohash_ = input.readBytes();
               break;
             }
           }
@@ -1175,10 +1195,54 @@ public final class Message {
       return enumItem_.get(index);
     }
 
+    // required string geohash = 4;
+    public static final int GEOHASH_FIELD_NUMBER = 4;
+    private java.lang.Object geohash_;
+    /**
+     * <code>required string geohash = 4;</code>
+     */
+    public boolean hasGeohash() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>required string geohash = 4;</code>
+     */
+    public java.lang.String getGeohash() {
+      java.lang.Object ref = geohash_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          geohash_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string geohash = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getGeohashBytes() {
+      java.lang.Object ref = geohash_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        geohash_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private void initFields() {
       name_ = com.google.protobuf.ByteString.EMPTY;
       type_ = com.bupt.videometadata.proto.Message.METADATATYPE.Img;
       enumItem_ = java.util.Collections.emptyList();
+      geohash_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1190,6 +1254,10 @@ public final class Message {
         return false;
       }
       if (!hasType()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasGeohash()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -1208,6 +1276,9 @@ public final class Message {
       }
       for (int i = 0; i < enumItem_.size(); i++) {
         output.writeBytes(3, enumItem_.get(i));
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(4, getGeohashBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -1234,6 +1305,10 @@ public final class Message {
         }
         size += dataSize;
         size += 1 * getEnumItemList().size();
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getGeohashBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1357,6 +1432,8 @@ public final class Message {
         bitField0_ = (bitField0_ & ~0x00000002);
         enumItem_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000004);
+        geohash_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -1398,6 +1475,10 @@ public final class Message {
           bitField0_ = (bitField0_ & ~0x00000004);
         }
         result.enumItem_ = enumItem_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.geohash_ = geohash_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1430,6 +1511,11 @@ public final class Message {
           }
           onChanged();
         }
+        if (other.hasGeohash()) {
+          bitField0_ |= 0x00000008;
+          geohash_ = other.geohash_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -1440,6 +1526,10 @@ public final class Message {
           return false;
         }
         if (!hasType()) {
+          
+          return false;
+        }
+        if (!hasGeohash()) {
           
           return false;
         }
@@ -1633,6 +1723,80 @@ public final class Message {
       public Builder clearEnumItem() {
         enumItem_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+
+      // required string geohash = 4;
+      private java.lang.Object geohash_ = "";
+      /**
+       * <code>required string geohash = 4;</code>
+       */
+      public boolean hasGeohash() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>required string geohash = 4;</code>
+       */
+      public java.lang.String getGeohash() {
+        java.lang.Object ref = geohash_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          geohash_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string geohash = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getGeohashBytes() {
+        java.lang.Object ref = geohash_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          geohash_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string geohash = 4;</code>
+       */
+      public Builder setGeohash(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        geohash_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string geohash = 4;</code>
+       */
+      public Builder clearGeohash() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        geohash_ = getDefaultInstance().getGeohash();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string geohash = 4;</code>
+       */
+      public Builder setGeohashBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        geohash_ = value;
         onChanged();
         return this;
       }
@@ -10003,6 +10167,2255 @@ public final class Message {
     // @@protoc_insertion_point(class_scope:AddText)
   }
 
+  public interface MSGOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // required .MSGTYPE type = 1;
+    /**
+     * <code>required .MSGTYPE type = 1;</code>
+     */
+    boolean hasType();
+    /**
+     * <code>required .MSGTYPE type = 1;</code>
+     */
+    com.bupt.videometadata.proto.Message.MSGTYPE getType();
+
+    // optional .StoreVideo storeVideo = 2;
+    /**
+     * <code>optional .StoreVideo storeVideo = 2;</code>
+     */
+    boolean hasStoreVideo();
+    /**
+     * <code>optional .StoreVideo storeVideo = 2;</code>
+     */
+    com.bupt.videometadata.proto.Message.StoreVideo getStoreVideo();
+    /**
+     * <code>optional .StoreVideo storeVideo = 2;</code>
+     */
+    com.bupt.videometadata.proto.Message.StoreVideoOrBuilder getStoreVideoOrBuilder();
+
+    // optional .AddMetaDataType addMetaDataType = 3;
+    /**
+     * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+     */
+    boolean hasAddMetaDataType();
+    /**
+     * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddMetaDataType getAddMetaDataType();
+    /**
+     * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddMetaDataTypeOrBuilder getAddMetaDataTypeOrBuilder();
+
+    // optional .AddImg addImg = 4;
+    /**
+     * <code>optional .AddImg addImg = 4;</code>
+     */
+    boolean hasAddImg();
+    /**
+     * <code>optional .AddImg addImg = 4;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddImg getAddImg();
+    /**
+     * <code>optional .AddImg addImg = 4;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddImgOrBuilder getAddImgOrBuilder();
+
+    // optional .AddImgArray addImgArray = 5;
+    /**
+     * <code>optional .AddImgArray addImgArray = 5;</code>
+     */
+    boolean hasAddImgArray();
+    /**
+     * <code>optional .AddImgArray addImgArray = 5;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddImgArray getAddImgArray();
+    /**
+     * <code>optional .AddImgArray addImgArray = 5;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddImgArrayOrBuilder getAddImgArrayOrBuilder();
+
+    // optional .AddVideo addVideo = 6;
+    /**
+     * <code>optional .AddVideo addVideo = 6;</code>
+     */
+    boolean hasAddVideo();
+    /**
+     * <code>optional .AddVideo addVideo = 6;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddVideo getAddVideo();
+    /**
+     * <code>optional .AddVideo addVideo = 6;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddVideoOrBuilder getAddVideoOrBuilder();
+
+    // optional .AddVideoArray addVideoArray = 7;
+    /**
+     * <code>optional .AddVideoArray addVideoArray = 7;</code>
+     */
+    boolean hasAddVideoArray();
+    /**
+     * <code>optional .AddVideoArray addVideoArray = 7;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddVideoArray getAddVideoArray();
+    /**
+     * <code>optional .AddVideoArray addVideoArray = 7;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddVideoArrayOrBuilder getAddVideoArrayOrBuilder();
+
+    // optional .AddNum addNum = 8;
+    /**
+     * <code>optional .AddNum addNum = 8;</code>
+     */
+    boolean hasAddNum();
+    /**
+     * <code>optional .AddNum addNum = 8;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddNum getAddNum();
+    /**
+     * <code>optional .AddNum addNum = 8;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddNumOrBuilder getAddNumOrBuilder();
+
+    // optional .AddEnum addEnum = 9;
+    /**
+     * <code>optional .AddEnum addEnum = 9;</code>
+     */
+    boolean hasAddEnum();
+    /**
+     * <code>optional .AddEnum addEnum = 9;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddEnum getAddEnum();
+    /**
+     * <code>optional .AddEnum addEnum = 9;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddEnumOrBuilder getAddEnumOrBuilder();
+
+    // optional .AddText addText = 10;
+    /**
+     * <code>optional .AddText addText = 10;</code>
+     */
+    boolean hasAddText();
+    /**
+     * <code>optional .AddText addText = 10;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddText getAddText();
+    /**
+     * <code>optional .AddText addText = 10;</code>
+     */
+    com.bupt.videometadata.proto.Message.AddTextOrBuilder getAddTextOrBuilder();
+  }
+  /**
+   * Protobuf type {@code MSG}
+   */
+  public static final class MSG extends
+      com.google.protobuf.GeneratedMessage
+      implements MSGOrBuilder {
+    // Use MSG.newBuilder() to construct.
+    private MSG(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private MSG(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final MSG defaultInstance;
+    public static MSG getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public MSG getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private MSG(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              int rawValue = input.readEnum();
+              com.bupt.videometadata.proto.Message.MSGTYPE value = com.bupt.videometadata.proto.Message.MSGTYPE.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                bitField0_ |= 0x00000001;
+                type_ = value;
+              }
+              break;
+            }
+            case 18: {
+              com.bupt.videometadata.proto.Message.StoreVideo.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = storeVideo_.toBuilder();
+              }
+              storeVideo_ = input.readMessage(com.bupt.videometadata.proto.Message.StoreVideo.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(storeVideo_);
+                storeVideo_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+            case 26: {
+              com.bupt.videometadata.proto.Message.AddMetaDataType.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+                subBuilder = addMetaDataType_.toBuilder();
+              }
+              addMetaDataType_ = input.readMessage(com.bupt.videometadata.proto.Message.AddMetaDataType.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(addMetaDataType_);
+                addMetaDataType_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000004;
+              break;
+            }
+            case 34: {
+              com.bupt.videometadata.proto.Message.AddImg.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+                subBuilder = addImg_.toBuilder();
+              }
+              addImg_ = input.readMessage(com.bupt.videometadata.proto.Message.AddImg.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(addImg_);
+                addImg_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000008;
+              break;
+            }
+            case 42: {
+              com.bupt.videometadata.proto.Message.AddImgArray.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000010) == 0x00000010)) {
+                subBuilder = addImgArray_.toBuilder();
+              }
+              addImgArray_ = input.readMessage(com.bupt.videometadata.proto.Message.AddImgArray.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(addImgArray_);
+                addImgArray_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000010;
+              break;
+            }
+            case 50: {
+              com.bupt.videometadata.proto.Message.AddVideo.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000020) == 0x00000020)) {
+                subBuilder = addVideo_.toBuilder();
+              }
+              addVideo_ = input.readMessage(com.bupt.videometadata.proto.Message.AddVideo.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(addVideo_);
+                addVideo_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000020;
+              break;
+            }
+            case 58: {
+              com.bupt.videometadata.proto.Message.AddVideoArray.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000040) == 0x00000040)) {
+                subBuilder = addVideoArray_.toBuilder();
+              }
+              addVideoArray_ = input.readMessage(com.bupt.videometadata.proto.Message.AddVideoArray.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(addVideoArray_);
+                addVideoArray_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000040;
+              break;
+            }
+            case 66: {
+              com.bupt.videometadata.proto.Message.AddNum.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000080) == 0x00000080)) {
+                subBuilder = addNum_.toBuilder();
+              }
+              addNum_ = input.readMessage(com.bupt.videometadata.proto.Message.AddNum.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(addNum_);
+                addNum_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000080;
+              break;
+            }
+            case 74: {
+              com.bupt.videometadata.proto.Message.AddEnum.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000100) == 0x00000100)) {
+                subBuilder = addEnum_.toBuilder();
+              }
+              addEnum_ = input.readMessage(com.bupt.videometadata.proto.Message.AddEnum.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(addEnum_);
+                addEnum_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000100;
+              break;
+            }
+            case 82: {
+              com.bupt.videometadata.proto.Message.AddText.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000200) == 0x00000200)) {
+                subBuilder = addText_.toBuilder();
+              }
+              addText_ = input.readMessage(com.bupt.videometadata.proto.Message.AddText.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(addText_);
+                addText_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000200;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.bupt.videometadata.proto.Message.internal_static_MSG_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.bupt.videometadata.proto.Message.internal_static_MSG_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.bupt.videometadata.proto.Message.MSG.class, com.bupt.videometadata.proto.Message.MSG.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<MSG> PARSER =
+        new com.google.protobuf.AbstractParser<MSG>() {
+      public MSG parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new MSG(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<MSG> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // required .MSGTYPE type = 1;
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private com.bupt.videometadata.proto.Message.MSGTYPE type_;
+    /**
+     * <code>required .MSGTYPE type = 1;</code>
+     */
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required .MSGTYPE type = 1;</code>
+     */
+    public com.bupt.videometadata.proto.Message.MSGTYPE getType() {
+      return type_;
+    }
+
+    // optional .StoreVideo storeVideo = 2;
+    public static final int STOREVIDEO_FIELD_NUMBER = 2;
+    private com.bupt.videometadata.proto.Message.StoreVideo storeVideo_;
+    /**
+     * <code>optional .StoreVideo storeVideo = 2;</code>
+     */
+    public boolean hasStoreVideo() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .StoreVideo storeVideo = 2;</code>
+     */
+    public com.bupt.videometadata.proto.Message.StoreVideo getStoreVideo() {
+      return storeVideo_;
+    }
+    /**
+     * <code>optional .StoreVideo storeVideo = 2;</code>
+     */
+    public com.bupt.videometadata.proto.Message.StoreVideoOrBuilder getStoreVideoOrBuilder() {
+      return storeVideo_;
+    }
+
+    // optional .AddMetaDataType addMetaDataType = 3;
+    public static final int ADDMETADATATYPE_FIELD_NUMBER = 3;
+    private com.bupt.videometadata.proto.Message.AddMetaDataType addMetaDataType_;
+    /**
+     * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+     */
+    public boolean hasAddMetaDataType() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddMetaDataType getAddMetaDataType() {
+      return addMetaDataType_;
+    }
+    /**
+     * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddMetaDataTypeOrBuilder getAddMetaDataTypeOrBuilder() {
+      return addMetaDataType_;
+    }
+
+    // optional .AddImg addImg = 4;
+    public static final int ADDIMG_FIELD_NUMBER = 4;
+    private com.bupt.videometadata.proto.Message.AddImg addImg_;
+    /**
+     * <code>optional .AddImg addImg = 4;</code>
+     */
+    public boolean hasAddImg() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional .AddImg addImg = 4;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddImg getAddImg() {
+      return addImg_;
+    }
+    /**
+     * <code>optional .AddImg addImg = 4;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddImgOrBuilder getAddImgOrBuilder() {
+      return addImg_;
+    }
+
+    // optional .AddImgArray addImgArray = 5;
+    public static final int ADDIMGARRAY_FIELD_NUMBER = 5;
+    private com.bupt.videometadata.proto.Message.AddImgArray addImgArray_;
+    /**
+     * <code>optional .AddImgArray addImgArray = 5;</code>
+     */
+    public boolean hasAddImgArray() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional .AddImgArray addImgArray = 5;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddImgArray getAddImgArray() {
+      return addImgArray_;
+    }
+    /**
+     * <code>optional .AddImgArray addImgArray = 5;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddImgArrayOrBuilder getAddImgArrayOrBuilder() {
+      return addImgArray_;
+    }
+
+    // optional .AddVideo addVideo = 6;
+    public static final int ADDVIDEO_FIELD_NUMBER = 6;
+    private com.bupt.videometadata.proto.Message.AddVideo addVideo_;
+    /**
+     * <code>optional .AddVideo addVideo = 6;</code>
+     */
+    public boolean hasAddVideo() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional .AddVideo addVideo = 6;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddVideo getAddVideo() {
+      return addVideo_;
+    }
+    /**
+     * <code>optional .AddVideo addVideo = 6;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddVideoOrBuilder getAddVideoOrBuilder() {
+      return addVideo_;
+    }
+
+    // optional .AddVideoArray addVideoArray = 7;
+    public static final int ADDVIDEOARRAY_FIELD_NUMBER = 7;
+    private com.bupt.videometadata.proto.Message.AddVideoArray addVideoArray_;
+    /**
+     * <code>optional .AddVideoArray addVideoArray = 7;</code>
+     */
+    public boolean hasAddVideoArray() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional .AddVideoArray addVideoArray = 7;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddVideoArray getAddVideoArray() {
+      return addVideoArray_;
+    }
+    /**
+     * <code>optional .AddVideoArray addVideoArray = 7;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddVideoArrayOrBuilder getAddVideoArrayOrBuilder() {
+      return addVideoArray_;
+    }
+
+    // optional .AddNum addNum = 8;
+    public static final int ADDNUM_FIELD_NUMBER = 8;
+    private com.bupt.videometadata.proto.Message.AddNum addNum_;
+    /**
+     * <code>optional .AddNum addNum = 8;</code>
+     */
+    public boolean hasAddNum() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional .AddNum addNum = 8;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddNum getAddNum() {
+      return addNum_;
+    }
+    /**
+     * <code>optional .AddNum addNum = 8;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddNumOrBuilder getAddNumOrBuilder() {
+      return addNum_;
+    }
+
+    // optional .AddEnum addEnum = 9;
+    public static final int ADDENUM_FIELD_NUMBER = 9;
+    private com.bupt.videometadata.proto.Message.AddEnum addEnum_;
+    /**
+     * <code>optional .AddEnum addEnum = 9;</code>
+     */
+    public boolean hasAddEnum() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    /**
+     * <code>optional .AddEnum addEnum = 9;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddEnum getAddEnum() {
+      return addEnum_;
+    }
+    /**
+     * <code>optional .AddEnum addEnum = 9;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddEnumOrBuilder getAddEnumOrBuilder() {
+      return addEnum_;
+    }
+
+    // optional .AddText addText = 10;
+    public static final int ADDTEXT_FIELD_NUMBER = 10;
+    private com.bupt.videometadata.proto.Message.AddText addText_;
+    /**
+     * <code>optional .AddText addText = 10;</code>
+     */
+    public boolean hasAddText() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    /**
+     * <code>optional .AddText addText = 10;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddText getAddText() {
+      return addText_;
+    }
+    /**
+     * <code>optional .AddText addText = 10;</code>
+     */
+    public com.bupt.videometadata.proto.Message.AddTextOrBuilder getAddTextOrBuilder() {
+      return addText_;
+    }
+
+    private void initFields() {
+      type_ = com.bupt.videometadata.proto.Message.MSGTYPE.Store_Video;
+      storeVideo_ = com.bupt.videometadata.proto.Message.StoreVideo.getDefaultInstance();
+      addMetaDataType_ = com.bupt.videometadata.proto.Message.AddMetaDataType.getDefaultInstance();
+      addImg_ = com.bupt.videometadata.proto.Message.AddImg.getDefaultInstance();
+      addImgArray_ = com.bupt.videometadata.proto.Message.AddImgArray.getDefaultInstance();
+      addVideo_ = com.bupt.videometadata.proto.Message.AddVideo.getDefaultInstance();
+      addVideoArray_ = com.bupt.videometadata.proto.Message.AddVideoArray.getDefaultInstance();
+      addNum_ = com.bupt.videometadata.proto.Message.AddNum.getDefaultInstance();
+      addEnum_ = com.bupt.videometadata.proto.Message.AddEnum.getDefaultInstance();
+      addText_ = com.bupt.videometadata.proto.Message.AddText.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasType()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (hasStoreVideo()) {
+        if (!getStoreVideo().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasAddMetaDataType()) {
+        if (!getAddMetaDataType().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasAddImg()) {
+        if (!getAddImg().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasAddImgArray()) {
+        if (!getAddImgArray().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasAddVideo()) {
+        if (!getAddVideo().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasAddVideoArray()) {
+        if (!getAddVideoArray().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasAddNum()) {
+        if (!getAddNum().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasAddEnum()) {
+        if (!getAddEnum().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasAddText()) {
+        if (!getAddText().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeEnum(1, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, storeVideo_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeMessage(3, addMetaDataType_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeMessage(4, addImg_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeMessage(5, addImgArray_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeMessage(6, addVideo_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeMessage(7, addVideoArray_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeMessage(8, addNum_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeMessage(9, addEnum_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeMessage(10, addText_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, storeVideo_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, addMetaDataType_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, addImg_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, addImgArray_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, addVideo_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, addVideoArray_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, addNum_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, addEnum_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, addText_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.bupt.videometadata.proto.Message.MSG parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.bupt.videometadata.proto.Message.MSG parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.bupt.videometadata.proto.Message.MSG parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.bupt.videometadata.proto.Message.MSG parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.bupt.videometadata.proto.Message.MSG parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.bupt.videometadata.proto.Message.MSG parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.bupt.videometadata.proto.Message.MSG parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.bupt.videometadata.proto.Message.MSG parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.bupt.videometadata.proto.Message.MSG parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.bupt.videometadata.proto.Message.MSG parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.bupt.videometadata.proto.Message.MSG prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code MSG}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.bupt.videometadata.proto.Message.MSGOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.bupt.videometadata.proto.Message.internal_static_MSG_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.bupt.videometadata.proto.Message.internal_static_MSG_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.bupt.videometadata.proto.Message.MSG.class, com.bupt.videometadata.proto.Message.MSG.Builder.class);
+      }
+
+      // Construct using com.bupt.videometadata.proto.Message.MSG.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getStoreVideoFieldBuilder();
+          getAddMetaDataTypeFieldBuilder();
+          getAddImgFieldBuilder();
+          getAddImgArrayFieldBuilder();
+          getAddVideoFieldBuilder();
+          getAddVideoArrayFieldBuilder();
+          getAddNumFieldBuilder();
+          getAddEnumFieldBuilder();
+          getAddTextFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        type_ = com.bupt.videometadata.proto.Message.MSGTYPE.Store_Video;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (storeVideoBuilder_ == null) {
+          storeVideo_ = com.bupt.videometadata.proto.Message.StoreVideo.getDefaultInstance();
+        } else {
+          storeVideoBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        if (addMetaDataTypeBuilder_ == null) {
+          addMetaDataType_ = com.bupt.videometadata.proto.Message.AddMetaDataType.getDefaultInstance();
+        } else {
+          addMetaDataTypeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        if (addImgBuilder_ == null) {
+          addImg_ = com.bupt.videometadata.proto.Message.AddImg.getDefaultInstance();
+        } else {
+          addImgBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000008);
+        if (addImgArrayBuilder_ == null) {
+          addImgArray_ = com.bupt.videometadata.proto.Message.AddImgArray.getDefaultInstance();
+        } else {
+          addImgArrayBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
+        if (addVideoBuilder_ == null) {
+          addVideo_ = com.bupt.videometadata.proto.Message.AddVideo.getDefaultInstance();
+        } else {
+          addVideoBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000020);
+        if (addVideoArrayBuilder_ == null) {
+          addVideoArray_ = com.bupt.videometadata.proto.Message.AddVideoArray.getDefaultInstance();
+        } else {
+          addVideoArrayBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        if (addNumBuilder_ == null) {
+          addNum_ = com.bupt.videometadata.proto.Message.AddNum.getDefaultInstance();
+        } else {
+          addNumBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
+        if (addEnumBuilder_ == null) {
+          addEnum_ = com.bupt.videometadata.proto.Message.AddEnum.getDefaultInstance();
+        } else {
+          addEnumBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000100);
+        if (addTextBuilder_ == null) {
+          addText_ = com.bupt.videometadata.proto.Message.AddText.getDefaultInstance();
+        } else {
+          addTextBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000200);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.bupt.videometadata.proto.Message.internal_static_MSG_descriptor;
+      }
+
+      public com.bupt.videometadata.proto.Message.MSG getDefaultInstanceForType() {
+        return com.bupt.videometadata.proto.Message.MSG.getDefaultInstance();
+      }
+
+      public com.bupt.videometadata.proto.Message.MSG build() {
+        com.bupt.videometadata.proto.Message.MSG result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.bupt.videometadata.proto.Message.MSG buildPartial() {
+        com.bupt.videometadata.proto.Message.MSG result = new com.bupt.videometadata.proto.Message.MSG(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (storeVideoBuilder_ == null) {
+          result.storeVideo_ = storeVideo_;
+        } else {
+          result.storeVideo_ = storeVideoBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        if (addMetaDataTypeBuilder_ == null) {
+          result.addMetaDataType_ = addMetaDataType_;
+        } else {
+          result.addMetaDataType_ = addMetaDataTypeBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        if (addImgBuilder_ == null) {
+          result.addImg_ = addImg_;
+        } else {
+          result.addImg_ = addImgBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        if (addImgArrayBuilder_ == null) {
+          result.addImgArray_ = addImgArray_;
+        } else {
+          result.addImgArray_ = addImgArrayBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        if (addVideoBuilder_ == null) {
+          result.addVideo_ = addVideo_;
+        } else {
+          result.addVideo_ = addVideoBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        if (addVideoArrayBuilder_ == null) {
+          result.addVideoArray_ = addVideoArray_;
+        } else {
+          result.addVideoArray_ = addVideoArrayBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        if (addNumBuilder_ == null) {
+          result.addNum_ = addNum_;
+        } else {
+          result.addNum_ = addNumBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        if (addEnumBuilder_ == null) {
+          result.addEnum_ = addEnum_;
+        } else {
+          result.addEnum_ = addEnumBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        if (addTextBuilder_ == null) {
+          result.addText_ = addText_;
+        } else {
+          result.addText_ = addTextBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.bupt.videometadata.proto.Message.MSG) {
+          return mergeFrom((com.bupt.videometadata.proto.Message.MSG)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.bupt.videometadata.proto.Message.MSG other) {
+        if (other == com.bupt.videometadata.proto.Message.MSG.getDefaultInstance()) return this;
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (other.hasStoreVideo()) {
+          mergeStoreVideo(other.getStoreVideo());
+        }
+        if (other.hasAddMetaDataType()) {
+          mergeAddMetaDataType(other.getAddMetaDataType());
+        }
+        if (other.hasAddImg()) {
+          mergeAddImg(other.getAddImg());
+        }
+        if (other.hasAddImgArray()) {
+          mergeAddImgArray(other.getAddImgArray());
+        }
+        if (other.hasAddVideo()) {
+          mergeAddVideo(other.getAddVideo());
+        }
+        if (other.hasAddVideoArray()) {
+          mergeAddVideoArray(other.getAddVideoArray());
+        }
+        if (other.hasAddNum()) {
+          mergeAddNum(other.getAddNum());
+        }
+        if (other.hasAddEnum()) {
+          mergeAddEnum(other.getAddEnum());
+        }
+        if (other.hasAddText()) {
+          mergeAddText(other.getAddText());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasType()) {
+          
+          return false;
+        }
+        if (hasStoreVideo()) {
+          if (!getStoreVideo().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasAddMetaDataType()) {
+          if (!getAddMetaDataType().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasAddImg()) {
+          if (!getAddImg().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasAddImgArray()) {
+          if (!getAddImgArray().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasAddVideo()) {
+          if (!getAddVideo().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasAddVideoArray()) {
+          if (!getAddVideoArray().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasAddNum()) {
+          if (!getAddNum().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasAddEnum()) {
+          if (!getAddEnum().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasAddText()) {
+          if (!getAddText().isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.bupt.videometadata.proto.Message.MSG parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.bupt.videometadata.proto.Message.MSG) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required .MSGTYPE type = 1;
+      private com.bupt.videometadata.proto.Message.MSGTYPE type_ = com.bupt.videometadata.proto.Message.MSGTYPE.Store_Video;
+      /**
+       * <code>required .MSGTYPE type = 1;</code>
+       */
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required .MSGTYPE type = 1;</code>
+       */
+      public com.bupt.videometadata.proto.Message.MSGTYPE getType() {
+        return type_;
+      }
+      /**
+       * <code>required .MSGTYPE type = 1;</code>
+       */
+      public Builder setType(com.bupt.videometadata.proto.Message.MSGTYPE value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required .MSGTYPE type = 1;</code>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        type_ = com.bupt.videometadata.proto.Message.MSGTYPE.Store_Video;
+        onChanged();
+        return this;
+      }
+
+      // optional .StoreVideo storeVideo = 2;
+      private com.bupt.videometadata.proto.Message.StoreVideo storeVideo_ = com.bupt.videometadata.proto.Message.StoreVideo.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.StoreVideo, com.bupt.videometadata.proto.Message.StoreVideo.Builder, com.bupt.videometadata.proto.Message.StoreVideoOrBuilder> storeVideoBuilder_;
+      /**
+       * <code>optional .StoreVideo storeVideo = 2;</code>
+       */
+      public boolean hasStoreVideo() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .StoreVideo storeVideo = 2;</code>
+       */
+      public com.bupt.videometadata.proto.Message.StoreVideo getStoreVideo() {
+        if (storeVideoBuilder_ == null) {
+          return storeVideo_;
+        } else {
+          return storeVideoBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .StoreVideo storeVideo = 2;</code>
+       */
+      public Builder setStoreVideo(com.bupt.videometadata.proto.Message.StoreVideo value) {
+        if (storeVideoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          storeVideo_ = value;
+          onChanged();
+        } else {
+          storeVideoBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .StoreVideo storeVideo = 2;</code>
+       */
+      public Builder setStoreVideo(
+          com.bupt.videometadata.proto.Message.StoreVideo.Builder builderForValue) {
+        if (storeVideoBuilder_ == null) {
+          storeVideo_ = builderForValue.build();
+          onChanged();
+        } else {
+          storeVideoBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .StoreVideo storeVideo = 2;</code>
+       */
+      public Builder mergeStoreVideo(com.bupt.videometadata.proto.Message.StoreVideo value) {
+        if (storeVideoBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              storeVideo_ != com.bupt.videometadata.proto.Message.StoreVideo.getDefaultInstance()) {
+            storeVideo_ =
+              com.bupt.videometadata.proto.Message.StoreVideo.newBuilder(storeVideo_).mergeFrom(value).buildPartial();
+          } else {
+            storeVideo_ = value;
+          }
+          onChanged();
+        } else {
+          storeVideoBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .StoreVideo storeVideo = 2;</code>
+       */
+      public Builder clearStoreVideo() {
+        if (storeVideoBuilder_ == null) {
+          storeVideo_ = com.bupt.videometadata.proto.Message.StoreVideo.getDefaultInstance();
+          onChanged();
+        } else {
+          storeVideoBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .StoreVideo storeVideo = 2;</code>
+       */
+      public com.bupt.videometadata.proto.Message.StoreVideo.Builder getStoreVideoBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getStoreVideoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .StoreVideo storeVideo = 2;</code>
+       */
+      public com.bupt.videometadata.proto.Message.StoreVideoOrBuilder getStoreVideoOrBuilder() {
+        if (storeVideoBuilder_ != null) {
+          return storeVideoBuilder_.getMessageOrBuilder();
+        } else {
+          return storeVideo_;
+        }
+      }
+      /**
+       * <code>optional .StoreVideo storeVideo = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.StoreVideo, com.bupt.videometadata.proto.Message.StoreVideo.Builder, com.bupt.videometadata.proto.Message.StoreVideoOrBuilder> 
+          getStoreVideoFieldBuilder() {
+        if (storeVideoBuilder_ == null) {
+          storeVideoBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.bupt.videometadata.proto.Message.StoreVideo, com.bupt.videometadata.proto.Message.StoreVideo.Builder, com.bupt.videometadata.proto.Message.StoreVideoOrBuilder>(
+                  storeVideo_,
+                  getParentForChildren(),
+                  isClean());
+          storeVideo_ = null;
+        }
+        return storeVideoBuilder_;
+      }
+
+      // optional .AddMetaDataType addMetaDataType = 3;
+      private com.bupt.videometadata.proto.Message.AddMetaDataType addMetaDataType_ = com.bupt.videometadata.proto.Message.AddMetaDataType.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddMetaDataType, com.bupt.videometadata.proto.Message.AddMetaDataType.Builder, com.bupt.videometadata.proto.Message.AddMetaDataTypeOrBuilder> addMetaDataTypeBuilder_;
+      /**
+       * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+       */
+      public boolean hasAddMetaDataType() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddMetaDataType getAddMetaDataType() {
+        if (addMetaDataTypeBuilder_ == null) {
+          return addMetaDataType_;
+        } else {
+          return addMetaDataTypeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+       */
+      public Builder setAddMetaDataType(com.bupt.videometadata.proto.Message.AddMetaDataType value) {
+        if (addMetaDataTypeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          addMetaDataType_ = value;
+          onChanged();
+        } else {
+          addMetaDataTypeBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+       */
+      public Builder setAddMetaDataType(
+          com.bupt.videometadata.proto.Message.AddMetaDataType.Builder builderForValue) {
+        if (addMetaDataTypeBuilder_ == null) {
+          addMetaDataType_ = builderForValue.build();
+          onChanged();
+        } else {
+          addMetaDataTypeBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+       */
+      public Builder mergeAddMetaDataType(com.bupt.videometadata.proto.Message.AddMetaDataType value) {
+        if (addMetaDataTypeBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+              addMetaDataType_ != com.bupt.videometadata.proto.Message.AddMetaDataType.getDefaultInstance()) {
+            addMetaDataType_ =
+              com.bupt.videometadata.proto.Message.AddMetaDataType.newBuilder(addMetaDataType_).mergeFrom(value).buildPartial();
+          } else {
+            addMetaDataType_ = value;
+          }
+          onChanged();
+        } else {
+          addMetaDataTypeBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+       */
+      public Builder clearAddMetaDataType() {
+        if (addMetaDataTypeBuilder_ == null) {
+          addMetaDataType_ = com.bupt.videometadata.proto.Message.AddMetaDataType.getDefaultInstance();
+          onChanged();
+        } else {
+          addMetaDataTypeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      /**
+       * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddMetaDataType.Builder getAddMetaDataTypeBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getAddMetaDataTypeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddMetaDataTypeOrBuilder getAddMetaDataTypeOrBuilder() {
+        if (addMetaDataTypeBuilder_ != null) {
+          return addMetaDataTypeBuilder_.getMessageOrBuilder();
+        } else {
+          return addMetaDataType_;
+        }
+      }
+      /**
+       * <code>optional .AddMetaDataType addMetaDataType = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddMetaDataType, com.bupt.videometadata.proto.Message.AddMetaDataType.Builder, com.bupt.videometadata.proto.Message.AddMetaDataTypeOrBuilder> 
+          getAddMetaDataTypeFieldBuilder() {
+        if (addMetaDataTypeBuilder_ == null) {
+          addMetaDataTypeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.bupt.videometadata.proto.Message.AddMetaDataType, com.bupt.videometadata.proto.Message.AddMetaDataType.Builder, com.bupt.videometadata.proto.Message.AddMetaDataTypeOrBuilder>(
+                  addMetaDataType_,
+                  getParentForChildren(),
+                  isClean());
+          addMetaDataType_ = null;
+        }
+        return addMetaDataTypeBuilder_;
+      }
+
+      // optional .AddImg addImg = 4;
+      private com.bupt.videometadata.proto.Message.AddImg addImg_ = com.bupt.videometadata.proto.Message.AddImg.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddImg, com.bupt.videometadata.proto.Message.AddImg.Builder, com.bupt.videometadata.proto.Message.AddImgOrBuilder> addImgBuilder_;
+      /**
+       * <code>optional .AddImg addImg = 4;</code>
+       */
+      public boolean hasAddImg() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional .AddImg addImg = 4;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddImg getAddImg() {
+        if (addImgBuilder_ == null) {
+          return addImg_;
+        } else {
+          return addImgBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .AddImg addImg = 4;</code>
+       */
+      public Builder setAddImg(com.bupt.videometadata.proto.Message.AddImg value) {
+        if (addImgBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          addImg_ = value;
+          onChanged();
+        } else {
+          addImgBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .AddImg addImg = 4;</code>
+       */
+      public Builder setAddImg(
+          com.bupt.videometadata.proto.Message.AddImg.Builder builderForValue) {
+        if (addImgBuilder_ == null) {
+          addImg_ = builderForValue.build();
+          onChanged();
+        } else {
+          addImgBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .AddImg addImg = 4;</code>
+       */
+      public Builder mergeAddImg(com.bupt.videometadata.proto.Message.AddImg value) {
+        if (addImgBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+              addImg_ != com.bupt.videometadata.proto.Message.AddImg.getDefaultInstance()) {
+            addImg_ =
+              com.bupt.videometadata.proto.Message.AddImg.newBuilder(addImg_).mergeFrom(value).buildPartial();
+          } else {
+            addImg_ = value;
+          }
+          onChanged();
+        } else {
+          addImgBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .AddImg addImg = 4;</code>
+       */
+      public Builder clearAddImg() {
+        if (addImgBuilder_ == null) {
+          addImg_ = com.bupt.videometadata.proto.Message.AddImg.getDefaultInstance();
+          onChanged();
+        } else {
+          addImgBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      /**
+       * <code>optional .AddImg addImg = 4;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddImg.Builder getAddImgBuilder() {
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return getAddImgFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .AddImg addImg = 4;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddImgOrBuilder getAddImgOrBuilder() {
+        if (addImgBuilder_ != null) {
+          return addImgBuilder_.getMessageOrBuilder();
+        } else {
+          return addImg_;
+        }
+      }
+      /**
+       * <code>optional .AddImg addImg = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddImg, com.bupt.videometadata.proto.Message.AddImg.Builder, com.bupt.videometadata.proto.Message.AddImgOrBuilder> 
+          getAddImgFieldBuilder() {
+        if (addImgBuilder_ == null) {
+          addImgBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.bupt.videometadata.proto.Message.AddImg, com.bupt.videometadata.proto.Message.AddImg.Builder, com.bupt.videometadata.proto.Message.AddImgOrBuilder>(
+                  addImg_,
+                  getParentForChildren(),
+                  isClean());
+          addImg_ = null;
+        }
+        return addImgBuilder_;
+      }
+
+      // optional .AddImgArray addImgArray = 5;
+      private com.bupt.videometadata.proto.Message.AddImgArray addImgArray_ = com.bupt.videometadata.proto.Message.AddImgArray.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddImgArray, com.bupt.videometadata.proto.Message.AddImgArray.Builder, com.bupt.videometadata.proto.Message.AddImgArrayOrBuilder> addImgArrayBuilder_;
+      /**
+       * <code>optional .AddImgArray addImgArray = 5;</code>
+       */
+      public boolean hasAddImgArray() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional .AddImgArray addImgArray = 5;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddImgArray getAddImgArray() {
+        if (addImgArrayBuilder_ == null) {
+          return addImgArray_;
+        } else {
+          return addImgArrayBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .AddImgArray addImgArray = 5;</code>
+       */
+      public Builder setAddImgArray(com.bupt.videometadata.proto.Message.AddImgArray value) {
+        if (addImgArrayBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          addImgArray_ = value;
+          onChanged();
+        } else {
+          addImgArrayBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .AddImgArray addImgArray = 5;</code>
+       */
+      public Builder setAddImgArray(
+          com.bupt.videometadata.proto.Message.AddImgArray.Builder builderForValue) {
+        if (addImgArrayBuilder_ == null) {
+          addImgArray_ = builderForValue.build();
+          onChanged();
+        } else {
+          addImgArrayBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .AddImgArray addImgArray = 5;</code>
+       */
+      public Builder mergeAddImgArray(com.bupt.videometadata.proto.Message.AddImgArray value) {
+        if (addImgArrayBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+              addImgArray_ != com.bupt.videometadata.proto.Message.AddImgArray.getDefaultInstance()) {
+            addImgArray_ =
+              com.bupt.videometadata.proto.Message.AddImgArray.newBuilder(addImgArray_).mergeFrom(value).buildPartial();
+          } else {
+            addImgArray_ = value;
+          }
+          onChanged();
+        } else {
+          addImgArrayBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      /**
+       * <code>optional .AddImgArray addImgArray = 5;</code>
+       */
+      public Builder clearAddImgArray() {
+        if (addImgArrayBuilder_ == null) {
+          addImgArray_ = com.bupt.videometadata.proto.Message.AddImgArray.getDefaultInstance();
+          onChanged();
+        } else {
+          addImgArrayBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+      /**
+       * <code>optional .AddImgArray addImgArray = 5;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddImgArray.Builder getAddImgArrayBuilder() {
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return getAddImgArrayFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .AddImgArray addImgArray = 5;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddImgArrayOrBuilder getAddImgArrayOrBuilder() {
+        if (addImgArrayBuilder_ != null) {
+          return addImgArrayBuilder_.getMessageOrBuilder();
+        } else {
+          return addImgArray_;
+        }
+      }
+      /**
+       * <code>optional .AddImgArray addImgArray = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddImgArray, com.bupt.videometadata.proto.Message.AddImgArray.Builder, com.bupt.videometadata.proto.Message.AddImgArrayOrBuilder> 
+          getAddImgArrayFieldBuilder() {
+        if (addImgArrayBuilder_ == null) {
+          addImgArrayBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.bupt.videometadata.proto.Message.AddImgArray, com.bupt.videometadata.proto.Message.AddImgArray.Builder, com.bupt.videometadata.proto.Message.AddImgArrayOrBuilder>(
+                  addImgArray_,
+                  getParentForChildren(),
+                  isClean());
+          addImgArray_ = null;
+        }
+        return addImgArrayBuilder_;
+      }
+
+      // optional .AddVideo addVideo = 6;
+      private com.bupt.videometadata.proto.Message.AddVideo addVideo_ = com.bupt.videometadata.proto.Message.AddVideo.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddVideo, com.bupt.videometadata.proto.Message.AddVideo.Builder, com.bupt.videometadata.proto.Message.AddVideoOrBuilder> addVideoBuilder_;
+      /**
+       * <code>optional .AddVideo addVideo = 6;</code>
+       */
+      public boolean hasAddVideo() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional .AddVideo addVideo = 6;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddVideo getAddVideo() {
+        if (addVideoBuilder_ == null) {
+          return addVideo_;
+        } else {
+          return addVideoBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .AddVideo addVideo = 6;</code>
+       */
+      public Builder setAddVideo(com.bupt.videometadata.proto.Message.AddVideo value) {
+        if (addVideoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          addVideo_ = value;
+          onChanged();
+        } else {
+          addVideoBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000020;
+        return this;
+      }
+      /**
+       * <code>optional .AddVideo addVideo = 6;</code>
+       */
+      public Builder setAddVideo(
+          com.bupt.videometadata.proto.Message.AddVideo.Builder builderForValue) {
+        if (addVideoBuilder_ == null) {
+          addVideo_ = builderForValue.build();
+          onChanged();
+        } else {
+          addVideoBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000020;
+        return this;
+      }
+      /**
+       * <code>optional .AddVideo addVideo = 6;</code>
+       */
+      public Builder mergeAddVideo(com.bupt.videometadata.proto.Message.AddVideo value) {
+        if (addVideoBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020) &&
+              addVideo_ != com.bupt.videometadata.proto.Message.AddVideo.getDefaultInstance()) {
+            addVideo_ =
+              com.bupt.videometadata.proto.Message.AddVideo.newBuilder(addVideo_).mergeFrom(value).buildPartial();
+          } else {
+            addVideo_ = value;
+          }
+          onChanged();
+        } else {
+          addVideoBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000020;
+        return this;
+      }
+      /**
+       * <code>optional .AddVideo addVideo = 6;</code>
+       */
+      public Builder clearAddVideo() {
+        if (addVideoBuilder_ == null) {
+          addVideo_ = com.bupt.videometadata.proto.Message.AddVideo.getDefaultInstance();
+          onChanged();
+        } else {
+          addVideoBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000020);
+        return this;
+      }
+      /**
+       * <code>optional .AddVideo addVideo = 6;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddVideo.Builder getAddVideoBuilder() {
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return getAddVideoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .AddVideo addVideo = 6;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddVideoOrBuilder getAddVideoOrBuilder() {
+        if (addVideoBuilder_ != null) {
+          return addVideoBuilder_.getMessageOrBuilder();
+        } else {
+          return addVideo_;
+        }
+      }
+      /**
+       * <code>optional .AddVideo addVideo = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddVideo, com.bupt.videometadata.proto.Message.AddVideo.Builder, com.bupt.videometadata.proto.Message.AddVideoOrBuilder> 
+          getAddVideoFieldBuilder() {
+        if (addVideoBuilder_ == null) {
+          addVideoBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.bupt.videometadata.proto.Message.AddVideo, com.bupt.videometadata.proto.Message.AddVideo.Builder, com.bupt.videometadata.proto.Message.AddVideoOrBuilder>(
+                  addVideo_,
+                  getParentForChildren(),
+                  isClean());
+          addVideo_ = null;
+        }
+        return addVideoBuilder_;
+      }
+
+      // optional .AddVideoArray addVideoArray = 7;
+      private com.bupt.videometadata.proto.Message.AddVideoArray addVideoArray_ = com.bupt.videometadata.proto.Message.AddVideoArray.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddVideoArray, com.bupt.videometadata.proto.Message.AddVideoArray.Builder, com.bupt.videometadata.proto.Message.AddVideoArrayOrBuilder> addVideoArrayBuilder_;
+      /**
+       * <code>optional .AddVideoArray addVideoArray = 7;</code>
+       */
+      public boolean hasAddVideoArray() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional .AddVideoArray addVideoArray = 7;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddVideoArray getAddVideoArray() {
+        if (addVideoArrayBuilder_ == null) {
+          return addVideoArray_;
+        } else {
+          return addVideoArrayBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .AddVideoArray addVideoArray = 7;</code>
+       */
+      public Builder setAddVideoArray(com.bupt.videometadata.proto.Message.AddVideoArray value) {
+        if (addVideoArrayBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          addVideoArray_ = value;
+          onChanged();
+        } else {
+          addVideoArrayBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .AddVideoArray addVideoArray = 7;</code>
+       */
+      public Builder setAddVideoArray(
+          com.bupt.videometadata.proto.Message.AddVideoArray.Builder builderForValue) {
+        if (addVideoArrayBuilder_ == null) {
+          addVideoArray_ = builderForValue.build();
+          onChanged();
+        } else {
+          addVideoArrayBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .AddVideoArray addVideoArray = 7;</code>
+       */
+      public Builder mergeAddVideoArray(com.bupt.videometadata.proto.Message.AddVideoArray value) {
+        if (addVideoArrayBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+              addVideoArray_ != com.bupt.videometadata.proto.Message.AddVideoArray.getDefaultInstance()) {
+            addVideoArray_ =
+              com.bupt.videometadata.proto.Message.AddVideoArray.newBuilder(addVideoArray_).mergeFrom(value).buildPartial();
+          } else {
+            addVideoArray_ = value;
+          }
+          onChanged();
+        } else {
+          addVideoArrayBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .AddVideoArray addVideoArray = 7;</code>
+       */
+      public Builder clearAddVideoArray() {
+        if (addVideoArrayBuilder_ == null) {
+          addVideoArray_ = com.bupt.videometadata.proto.Message.AddVideoArray.getDefaultInstance();
+          onChanged();
+        } else {
+          addVideoArrayBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      /**
+       * <code>optional .AddVideoArray addVideoArray = 7;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddVideoArray.Builder getAddVideoArrayBuilder() {
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return getAddVideoArrayFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .AddVideoArray addVideoArray = 7;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddVideoArrayOrBuilder getAddVideoArrayOrBuilder() {
+        if (addVideoArrayBuilder_ != null) {
+          return addVideoArrayBuilder_.getMessageOrBuilder();
+        } else {
+          return addVideoArray_;
+        }
+      }
+      /**
+       * <code>optional .AddVideoArray addVideoArray = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddVideoArray, com.bupt.videometadata.proto.Message.AddVideoArray.Builder, com.bupt.videometadata.proto.Message.AddVideoArrayOrBuilder> 
+          getAddVideoArrayFieldBuilder() {
+        if (addVideoArrayBuilder_ == null) {
+          addVideoArrayBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.bupt.videometadata.proto.Message.AddVideoArray, com.bupt.videometadata.proto.Message.AddVideoArray.Builder, com.bupt.videometadata.proto.Message.AddVideoArrayOrBuilder>(
+                  addVideoArray_,
+                  getParentForChildren(),
+                  isClean());
+          addVideoArray_ = null;
+        }
+        return addVideoArrayBuilder_;
+      }
+
+      // optional .AddNum addNum = 8;
+      private com.bupt.videometadata.proto.Message.AddNum addNum_ = com.bupt.videometadata.proto.Message.AddNum.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddNum, com.bupt.videometadata.proto.Message.AddNum.Builder, com.bupt.videometadata.proto.Message.AddNumOrBuilder> addNumBuilder_;
+      /**
+       * <code>optional .AddNum addNum = 8;</code>
+       */
+      public boolean hasAddNum() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional .AddNum addNum = 8;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddNum getAddNum() {
+        if (addNumBuilder_ == null) {
+          return addNum_;
+        } else {
+          return addNumBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .AddNum addNum = 8;</code>
+       */
+      public Builder setAddNum(com.bupt.videometadata.proto.Message.AddNum value) {
+        if (addNumBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          addNum_ = value;
+          onChanged();
+        } else {
+          addNumBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .AddNum addNum = 8;</code>
+       */
+      public Builder setAddNum(
+          com.bupt.videometadata.proto.Message.AddNum.Builder builderForValue) {
+        if (addNumBuilder_ == null) {
+          addNum_ = builderForValue.build();
+          onChanged();
+        } else {
+          addNumBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .AddNum addNum = 8;</code>
+       */
+      public Builder mergeAddNum(com.bupt.videometadata.proto.Message.AddNum value) {
+        if (addNumBuilder_ == null) {
+          if (((bitField0_ & 0x00000080) == 0x00000080) &&
+              addNum_ != com.bupt.videometadata.proto.Message.AddNum.getDefaultInstance()) {
+            addNum_ =
+              com.bupt.videometadata.proto.Message.AddNum.newBuilder(addNum_).mergeFrom(value).buildPartial();
+          } else {
+            addNum_ = value;
+          }
+          onChanged();
+        } else {
+          addNumBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .AddNum addNum = 8;</code>
+       */
+      public Builder clearAddNum() {
+        if (addNumBuilder_ == null) {
+          addNum_ = com.bupt.videometadata.proto.Message.AddNum.getDefaultInstance();
+          onChanged();
+        } else {
+          addNumBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
+        return this;
+      }
+      /**
+       * <code>optional .AddNum addNum = 8;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddNum.Builder getAddNumBuilder() {
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return getAddNumFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .AddNum addNum = 8;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddNumOrBuilder getAddNumOrBuilder() {
+        if (addNumBuilder_ != null) {
+          return addNumBuilder_.getMessageOrBuilder();
+        } else {
+          return addNum_;
+        }
+      }
+      /**
+       * <code>optional .AddNum addNum = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddNum, com.bupt.videometadata.proto.Message.AddNum.Builder, com.bupt.videometadata.proto.Message.AddNumOrBuilder> 
+          getAddNumFieldBuilder() {
+        if (addNumBuilder_ == null) {
+          addNumBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.bupt.videometadata.proto.Message.AddNum, com.bupt.videometadata.proto.Message.AddNum.Builder, com.bupt.videometadata.proto.Message.AddNumOrBuilder>(
+                  addNum_,
+                  getParentForChildren(),
+                  isClean());
+          addNum_ = null;
+        }
+        return addNumBuilder_;
+      }
+
+      // optional .AddEnum addEnum = 9;
+      private com.bupt.videometadata.proto.Message.AddEnum addEnum_ = com.bupt.videometadata.proto.Message.AddEnum.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddEnum, com.bupt.videometadata.proto.Message.AddEnum.Builder, com.bupt.videometadata.proto.Message.AddEnumOrBuilder> addEnumBuilder_;
+      /**
+       * <code>optional .AddEnum addEnum = 9;</code>
+       */
+      public boolean hasAddEnum() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      /**
+       * <code>optional .AddEnum addEnum = 9;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddEnum getAddEnum() {
+        if (addEnumBuilder_ == null) {
+          return addEnum_;
+        } else {
+          return addEnumBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .AddEnum addEnum = 9;</code>
+       */
+      public Builder setAddEnum(com.bupt.videometadata.proto.Message.AddEnum value) {
+        if (addEnumBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          addEnum_ = value;
+          onChanged();
+        } else {
+          addEnumBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000100;
+        return this;
+      }
+      /**
+       * <code>optional .AddEnum addEnum = 9;</code>
+       */
+      public Builder setAddEnum(
+          com.bupt.videometadata.proto.Message.AddEnum.Builder builderForValue) {
+        if (addEnumBuilder_ == null) {
+          addEnum_ = builderForValue.build();
+          onChanged();
+        } else {
+          addEnumBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000100;
+        return this;
+      }
+      /**
+       * <code>optional .AddEnum addEnum = 9;</code>
+       */
+      public Builder mergeAddEnum(com.bupt.videometadata.proto.Message.AddEnum value) {
+        if (addEnumBuilder_ == null) {
+          if (((bitField0_ & 0x00000100) == 0x00000100) &&
+              addEnum_ != com.bupt.videometadata.proto.Message.AddEnum.getDefaultInstance()) {
+            addEnum_ =
+              com.bupt.videometadata.proto.Message.AddEnum.newBuilder(addEnum_).mergeFrom(value).buildPartial();
+          } else {
+            addEnum_ = value;
+          }
+          onChanged();
+        } else {
+          addEnumBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000100;
+        return this;
+      }
+      /**
+       * <code>optional .AddEnum addEnum = 9;</code>
+       */
+      public Builder clearAddEnum() {
+        if (addEnumBuilder_ == null) {
+          addEnum_ = com.bupt.videometadata.proto.Message.AddEnum.getDefaultInstance();
+          onChanged();
+        } else {
+          addEnumBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000100);
+        return this;
+      }
+      /**
+       * <code>optional .AddEnum addEnum = 9;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddEnum.Builder getAddEnumBuilder() {
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return getAddEnumFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .AddEnum addEnum = 9;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddEnumOrBuilder getAddEnumOrBuilder() {
+        if (addEnumBuilder_ != null) {
+          return addEnumBuilder_.getMessageOrBuilder();
+        } else {
+          return addEnum_;
+        }
+      }
+      /**
+       * <code>optional .AddEnum addEnum = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddEnum, com.bupt.videometadata.proto.Message.AddEnum.Builder, com.bupt.videometadata.proto.Message.AddEnumOrBuilder> 
+          getAddEnumFieldBuilder() {
+        if (addEnumBuilder_ == null) {
+          addEnumBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.bupt.videometadata.proto.Message.AddEnum, com.bupt.videometadata.proto.Message.AddEnum.Builder, com.bupt.videometadata.proto.Message.AddEnumOrBuilder>(
+                  addEnum_,
+                  getParentForChildren(),
+                  isClean());
+          addEnum_ = null;
+        }
+        return addEnumBuilder_;
+      }
+
+      // optional .AddText addText = 10;
+      private com.bupt.videometadata.proto.Message.AddText addText_ = com.bupt.videometadata.proto.Message.AddText.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddText, com.bupt.videometadata.proto.Message.AddText.Builder, com.bupt.videometadata.proto.Message.AddTextOrBuilder> addTextBuilder_;
+      /**
+       * <code>optional .AddText addText = 10;</code>
+       */
+      public boolean hasAddText() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      /**
+       * <code>optional .AddText addText = 10;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddText getAddText() {
+        if (addTextBuilder_ == null) {
+          return addText_;
+        } else {
+          return addTextBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .AddText addText = 10;</code>
+       */
+      public Builder setAddText(com.bupt.videometadata.proto.Message.AddText value) {
+        if (addTextBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          addText_ = value;
+          onChanged();
+        } else {
+          addTextBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000200;
+        return this;
+      }
+      /**
+       * <code>optional .AddText addText = 10;</code>
+       */
+      public Builder setAddText(
+          com.bupt.videometadata.proto.Message.AddText.Builder builderForValue) {
+        if (addTextBuilder_ == null) {
+          addText_ = builderForValue.build();
+          onChanged();
+        } else {
+          addTextBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000200;
+        return this;
+      }
+      /**
+       * <code>optional .AddText addText = 10;</code>
+       */
+      public Builder mergeAddText(com.bupt.videometadata.proto.Message.AddText value) {
+        if (addTextBuilder_ == null) {
+          if (((bitField0_ & 0x00000200) == 0x00000200) &&
+              addText_ != com.bupt.videometadata.proto.Message.AddText.getDefaultInstance()) {
+            addText_ =
+              com.bupt.videometadata.proto.Message.AddText.newBuilder(addText_).mergeFrom(value).buildPartial();
+          } else {
+            addText_ = value;
+          }
+          onChanged();
+        } else {
+          addTextBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000200;
+        return this;
+      }
+      /**
+       * <code>optional .AddText addText = 10;</code>
+       */
+      public Builder clearAddText() {
+        if (addTextBuilder_ == null) {
+          addText_ = com.bupt.videometadata.proto.Message.AddText.getDefaultInstance();
+          onChanged();
+        } else {
+          addTextBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000200);
+        return this;
+      }
+      /**
+       * <code>optional .AddText addText = 10;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddText.Builder getAddTextBuilder() {
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return getAddTextFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .AddText addText = 10;</code>
+       */
+      public com.bupt.videometadata.proto.Message.AddTextOrBuilder getAddTextOrBuilder() {
+        if (addTextBuilder_ != null) {
+          return addTextBuilder_.getMessageOrBuilder();
+        } else {
+          return addText_;
+        }
+      }
+      /**
+       * <code>optional .AddText addText = 10;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.bupt.videometadata.proto.Message.AddText, com.bupt.videometadata.proto.Message.AddText.Builder, com.bupt.videometadata.proto.Message.AddTextOrBuilder> 
+          getAddTextFieldBuilder() {
+        if (addTextBuilder_ == null) {
+          addTextBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.bupt.videometadata.proto.Message.AddText, com.bupt.videometadata.proto.Message.AddText.Builder, com.bupt.videometadata.proto.Message.AddTextOrBuilder>(
+                  addText_,
+                  getParentForChildren(),
+                  isClean());
+          addText_ = null;
+        }
+        return addTextBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:MSG)
+    }
+
+    static {
+      defaultInstance = new MSG(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:MSG)
+  }
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_StoreVideo_descriptor;
   private static
@@ -10058,6 +12471,11 @@ public final class Message {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_AddText_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_MSG_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_MSG_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -10069,37 +12487,46 @@ public final class Message {
     java.lang.String[] descriptorData = {
       "\n\034src/main/proto/Message.proto\"A\n\nStoreV" +
       "ideo\022\017\n\007geohash\030\001 \002(\t\022\021\n\tstarttime\030\002 \002(\003" +
-      "\022\017\n\007endtime\030\003 \002(\003\"N\n\017AddMetaDataType\022\014\n\004" +
+      "\022\017\n\007endtime\030\003 \002(\003\"_\n\017AddMetaDataType\022\014\n\004" +
       "name\030\001 \002(\014\022\033\n\004type\030\002 \002(\0162\r.METADATATYPE\022" +
-      "\020\n\010enumItem\030\003 \003(\014\":\n\007ImgData\022\014\n\004path\030\001 \002" +
-      "(\014\022\r\n\005frame\030\002 \002(\003\022\022\n\ncoodinates\030\003 \003(\t\"S\n" +
-      "\tVideoData\022\014\n\004path\030\001 \002(\014\022\022\n\nstartframe\030\002" +
-      " \002(\003\022\020\n\010endframe\030\003 \002(\003\022\022\n\ncoodinates\030\004 \003" +
-      "(\t\"b\n\006AddImg\022\017\n\007geohash\030\001 \002(\t\022\021\n\tstartti" +
-      "me\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003\022\025\n\003img\030\004 \002(\0132\010",
-      ".ImgData\022\014\n\004name\030\005 \002(\014\"g\n\013AddImgArray\022\017\n" +
-      "\007geohash\030\001 \002(\t\022\021\n\tstarttime\030\002 \002(\003\022\017\n\007end" +
-      "time\030\003 \002(\003\022\025\n\003img\030\004 \003(\0132\010.ImgData\022\014\n\004nam" +
-      "e\030\005 \002(\014\"h\n\010AddVideo\022\017\n\007geohash\030\001 \002(\t\022\021\n\t" +
-      "starttime\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003\022\031\n\005vide" +
-      "o\030\004 \002(\0132\n.VideoData\022\014\n\004name\030\005 \002(\014\"m\n\rAdd" +
-      "VideoArray\022\017\n\007geohash\030\001 \002(\t\022\021\n\tstarttime" +
-      "\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003\022\031\n\005video\030\004 \003(\0132\n" +
-      ".VideoData\022\014\n\004name\030\005 \002(\014\"X\n\006AddNum\022\017\n\007ge" +
-      "ohash\030\001 \002(\t\022\021\n\tstarttime\030\002 \002(\003\022\017\n\007endtim",
-      "e\030\003 \002(\003\022\013\n\003num\030\004 \002(\001\022\014\n\004name\030\005 \002(\014\"^\n\007Ad" +
-      "dEnum\022\017\n\007geohash\030\001 \002(\t\022\021\n\tstarttime\030\002 \002(" +
-      "\003\022\017\n\007endtime\030\003 \002(\003\022\020\n\010enumItem\030\004 \002(\014\022\014\n\004" +
-      "name\030\005 \002(\014\"Z\n\007AddText\022\017\n\007geohash\030\001 \002(\t\022\021" +
-      "\n\tstarttime\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003\022\014\n\004te" +
-      "xt\030\004 \002(\014\022\014\n\004name\030\005 \002(\014*\233\001\n\007MSGTYPE\022\017\n\013St" +
-      "ore_Video\020\001\022\024\n\020Add_MetaDataType\020\002\022\013\n\007Add" +
-      "_Img\020\021\022\020\n\014Add_ImgArray\020\022\022\r\n\tAdd_Video\020\023\022" +
-      "\022\n\016Add_VideoArray\020\024\022\013\n\007Add_Num\020\025\022\014\n\010Add_" +
-      "Enum\020\026\022\014\n\010Add_Text\020\027*]\n\014METADATATYPE\022\007\n\003",
-      "Img\020\001\022\014\n\010ImgArray\020\002\022\t\n\005Video\020\003\022\016\n\nVideoA" +
-      "rray\020\004\022\007\n\003Num\020\005\022\010\n\004Enum\020\006\022\010\n\004Text\020\007B\'\n\034c" +
-      "om.bupt.videometadata.protoB\007Message"
+      "\020\n\010enumItem\030\003 \003(\014\022\017\n\007geohash\030\004 \002(\t\":\n\007Im" +
+      "gData\022\014\n\004path\030\001 \002(\014\022\r\n\005frame\030\002 \002(\003\022\022\n\nco" +
+      "odinates\030\003 \003(\t\"S\n\tVideoData\022\014\n\004path\030\001 \002(" +
+      "\014\022\022\n\nstartframe\030\002 \002(\003\022\020\n\010endframe\030\003 \002(\003\022" +
+      "\022\n\ncoodinates\030\004 \003(\t\"b\n\006AddImg\022\017\n\007geohash" +
+      "\030\001 \002(\t\022\021\n\tstarttime\030\002 \002(\003\022\017\n\007endtime\030\003 \002",
+      "(\003\022\025\n\003img\030\004 \002(\0132\010.ImgData\022\014\n\004name\030\005 \002(\014\"" +
+      "g\n\013AddImgArray\022\017\n\007geohash\030\001 \002(\t\022\021\n\tstart" +
+      "time\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003\022\025\n\003img\030\004 \003(\013" +
+      "2\010.ImgData\022\014\n\004name\030\005 \002(\014\"h\n\010AddVideo\022\017\n\007" +
+      "geohash\030\001 \002(\t\022\021\n\tstarttime\030\002 \002(\003\022\017\n\007endt" +
+      "ime\030\003 \002(\003\022\031\n\005video\030\004 \002(\0132\n.VideoData\022\014\n\004" +
+      "name\030\005 \002(\014\"m\n\rAddVideoArray\022\017\n\007geohash\030\001" +
+      " \002(\t\022\021\n\tstarttime\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003" +
+      "\022\031\n\005video\030\004 \003(\0132\n.VideoData\022\014\n\004name\030\005 \002(" +
+      "\014\"X\n\006AddNum\022\017\n\007geohash\030\001 \002(\t\022\021\n\tstarttim",
+      "e\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003\022\013\n\003num\030\004 \002(\001\022\014\n" +
+      "\004name\030\005 \002(\014\"^\n\007AddEnum\022\017\n\007geohash\030\001 \002(\t\022" +
+      "\021\n\tstarttime\030\002 \002(\003\022\017\n\007endtime\030\003 \002(\003\022\020\n\010e" +
+      "numItem\030\004 \002(\014\022\014\n\004name\030\005 \002(\014\"Z\n\007AddText\022\017" +
+      "\n\007geohash\030\001 \002(\t\022\021\n\tstarttime\030\002 \002(\003\022\017\n\007en" +
+      "dtime\030\003 \002(\003\022\014\n\004text\030\004 \002(\014\022\014\n\004name\030\005 \002(\014\"" +
+      "\270\002\n\003MSG\022\026\n\004type\030\001 \002(\0162\010.MSGTYPE\022\037\n\nstore" +
+      "Video\030\002 \001(\0132\013.StoreVideo\022)\n\017addMetaDataT" +
+      "ype\030\003 \001(\0132\020.AddMetaDataType\022\027\n\006addImg\030\004 " +
+      "\001(\0132\007.AddImg\022!\n\013addImgArray\030\005 \001(\0132\014.AddI",
+      "mgArray\022\033\n\010addVideo\030\006 \001(\0132\t.AddVideo\022%\n\r" +
+      "addVideoArray\030\007 \001(\0132\016.AddVideoArray\022\027\n\006a" +
+      "ddNum\030\010 \001(\0132\007.AddNum\022\031\n\007addEnum\030\t \001(\0132\010." +
+      "AddEnum\022\031\n\007addText\030\n \001(\0132\010.AddText*\233\001\n\007M" +
+      "SGTYPE\022\017\n\013Store_Video\020\001\022\024\n\020Add_MetaDataT" +
+      "ype\020\002\022\013\n\007Add_Img\020\021\022\020\n\014Add_ImgArray\020\022\022\r\n\t" +
+      "Add_Video\020\023\022\022\n\016Add_VideoArray\020\024\022\013\n\007Add_N" +
+      "um\020\025\022\014\n\010Add_Enum\020\026\022\014\n\010Add_Text\020\027*]\n\014META" +
+      "DATATYPE\022\007\n\003Img\020\001\022\014\n\010ImgArray\020\002\022\t\n\005Video" +
+      "\020\003\022\016\n\nVideoArray\020\004\022\007\n\003Num\020\005\022\010\n\004Enum\020\006\022\010\n",
+      "\004Text\020\007B\'\n\034com.bupt.videometadata.protoB" +
+      "\007Message"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -10117,7 +12544,7 @@ public final class Message {
           internal_static_AddMetaDataType_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_AddMetaDataType_descriptor,
-              new java.lang.String[] { "Name", "Type", "EnumItem", });
+              new java.lang.String[] { "Name", "Type", "EnumItem", "Geohash", });
           internal_static_ImgData_descriptor =
             getDescriptor().getMessageTypes().get(2);
           internal_static_ImgData_fieldAccessorTable = new
@@ -10172,6 +12599,12 @@ public final class Message {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_AddText_descriptor,
               new java.lang.String[] { "Geohash", "Starttime", "Endtime", "Text", "Name", });
+          internal_static_MSG_descriptor =
+            getDescriptor().getMessageTypes().get(11);
+          internal_static_MSG_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_MSG_descriptor,
+              new java.lang.String[] { "Type", "StoreVideo", "AddMetaDataType", "AddImg", "AddImgArray", "AddVideo", "AddVideoArray", "AddNum", "AddEnum", "AddText", });
           return null;
         }
       };

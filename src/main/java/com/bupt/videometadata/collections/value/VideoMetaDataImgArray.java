@@ -2,11 +2,11 @@ package com.bupt.videometadata.collections.value;
 
 import com.bupt.videometadata.collections.VideoMetaDataType;
 import lombok.Data;
-import org.junit.Test;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Che Jin <jotline@github>
@@ -27,7 +27,7 @@ public class VideoMetaDataImgArray extends VideoMetaDataValue implements Seriali
         super.readObject(s);
         s.defaultReadObject();
         reinitialize();
-        array = (ArrayList<VideoMetaDataImg>) s.readObject();
+        array = (List<VideoMetaDataImg>) s.readObject();
 
     }
 
@@ -40,7 +40,7 @@ public class VideoMetaDataImgArray extends VideoMetaDataValue implements Seriali
         metaDataType = VideoMetaDataType.IMG_ARRAY;
     }
 
-    private ArrayList<VideoMetaDataImg> array = new ArrayList<VideoMetaDataImg>();
+    private List<VideoMetaDataImg> array = new ArrayList<VideoMetaDataImg>();
 
     public String toString() {
         StringBuilder result = new StringBuilder();

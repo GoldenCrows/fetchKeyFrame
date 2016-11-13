@@ -1,4 +1,5 @@
 option java_package = "com.bupt.videometadata.proto";
+
 option java_outer_classname = "Message";
 
 //三种类型的消息：存入视频的时候传递视频起始时间和结束时间、给摄像头增加元数据类型的时候、添加元数据。
@@ -34,6 +35,7 @@ message AddMetaDataType {
     required bytes name = 1;
     required METADATATYPE type = 2;
     repeated bytes enumItem = 3; //只对enum类型有用，用来说明enum由哪些item组成
+    required string geohash=4;
 }
 
 message ImgData {
@@ -105,5 +107,17 @@ message AddText {
     required int64 endtime = 3;
     required bytes text = 4;
     required bytes name = 5; //属性名称
+}
 
+message MSG {
+    required MSGTYPE type = 1;
+    optional StoreVideo storeVideo = 2;
+    optional AddMetaDataType addMetaDataType = 3;
+    optional AddImg addImg = 4;
+    optional AddImgArray addImgArray = 5;
+    optional AddVideo addVideo = 6;
+    optional AddVideoArray addVideoArray = 7;
+    optional AddNum addNum = 8;
+    optional AddEnum addEnum = 9;
+    optional AddText addText = 10;
 }
