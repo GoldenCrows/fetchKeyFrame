@@ -9,8 +9,6 @@ import java.util.List;
  * @author Che Jin <jotline@github>
  */
 public class VideoList implements Serializable {
-
-
     private void writeObject(java.io.ObjectOutputStream s) throws IOException {
         s.defaultWriteObject();
         s.writeObject(videoFileDatas);
@@ -73,9 +71,9 @@ public class VideoList implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder result=new StringBuilder();
-        videoFileDatas.stream().forEach(item->
-                result.append("     "+item.toString()+"\n"));
+        StringBuilder result = new StringBuilder();
+        videoFileDatas.stream().forEach(item ->
+                result.append("     " + item.toString() + "\n"));
         return result.toString();
     }
 
