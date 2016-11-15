@@ -147,10 +147,11 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
                 return Arrays.asList(itemitem.split(","));
             }).collect(Collectors.toList());
             int[][] coodinates = new int[4][2];
-            for (int i = 1; i <= 4; i++) {
-                coodinates[i - 1][0] = Integer.parseInt(coodinatesList.get(i - 1).get(0));
-                coodinates[i - 1][1] = Integer.parseInt(coodinatesList.get(i - 1).get(1));
-            }
+            if (coodinatesList != null&&coodinatesList.size()==4)
+                for (int i = 1; i <= 4; i++) {
+                    coodinates[i - 1][0] = Integer.parseInt(coodinatesList.get(i - 1).get(0));
+                    coodinates[i - 1][1] = Integer.parseInt(coodinatesList.get(i - 1).get(1));
+                }
             metaData.setCoodinates(coodinates);
             metaData.setFrame(item.getFrame());
             return metaData;
@@ -224,7 +225,7 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
         camera.addMetaDataType(addMetaDataType.getName().toStringUtf8(), type);
         //todo 这里没有考虑到enum的list         addMetaDataType.getEnumItemList();
 
-        System.out.println(manager.getCamera(addMetaDataType.getGeohash()));
+        System.out.println("recived" + manager.getCamera(addMetaDataType.getGeohash()));
 
         return true;
 

@@ -58,10 +58,14 @@ public class Camera implements Serializable {
     //还应该有一个bitmap，每次读的时候先命中一下bitmap看看有没有。
     //每个array类型的数据都应该有一个bitmap
 
-    private Map<String, BitMap> map = new HashMap<String, BitMap>();//需要序列化
+    private Map<String, BitMap>  map = new HashMap<String, BitMap>();//需要序列化
 
     //存放这个摄像头输出有哪些type
     private Map<String, VideoMetaDataType> typemap = new HashMap<String, VideoMetaDataType>();
+
+    public VideoMetaDataType getTypeByName(String name){
+        return typemap.get(name);
+    }
 
     public VideoFileData findFile(Long time) {
         return videoList.findFile(time);

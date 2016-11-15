@@ -33,7 +33,7 @@ public class VideoList implements Serializable {
         //分别查start和end在哪个文件中，返回其中的所有
         int startIndes = find(start);
         int endIndes = find(end);
-        return videoFileDatas.subList(startIndes, endIndes);
+        return videoFileDatas.subList(startIndes, endIndes+1);
     }
 
     public ArrayList<VideoFileData> getVideoFileDatas() {

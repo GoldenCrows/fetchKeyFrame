@@ -13,7 +13,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -72,7 +71,7 @@ public class HbaseController {
         return byteContent;
     }
 
-    public static void upload(String tableName,String path,int rowkey) throws Exception {
+    public static void upload(String tableName, String path, int rowkey) throws Exception {
         Table table = connection.getTable(TableName.valueOf(tableName));
         //// TODO: 2016/10/14 这里应该有一个rowkey的生成策略，目前只是简单做
         Put put = new Put(Bytes.toBytes(rowkey));
@@ -92,9 +91,5 @@ public class HbaseController {
 
     }
 
-    public static void main(String[] args)throws  Exception {
-        HbaseController.upload("cjtest2","d:/test.jpg",13);
-        HbaseController.upload("cjtest2","d:/testafter.jpg",14);
-    }
 }
 
