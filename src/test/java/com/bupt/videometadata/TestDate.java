@@ -15,6 +15,6 @@ public class TestDate {
     }
     @Test
     public void test() throws Exception {
-        HbaseController.download("cjtest2");
+        HbaseController.getImageByRowKey("cjtest2",12);
     }
 }

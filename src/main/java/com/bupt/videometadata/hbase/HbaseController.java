@@ -2,10 +2,7 @@ package com.bupt.videometadata.hbase;
 
 import io.leopard.javahost.JavaHost;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.HColumnDescriptor;
-import org.apache.hadoop.hbase.HTableDescriptor;
-import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.core.io.ClassPathResource;
@@ -16,7 +13,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.util.Date;
 import java.util.Properties;
 
@@ -76,34 +72,29 @@ public class HbaseController {
         return byteContent;
     }
 
-    public static void upload(String tableName) throws Exception {
+    public static void upload(String tableName,String path,int rowkey) throws Exception {
         Table table = connection.getTable(TableName.valueOf(tableName));
         //// TODO: 2016/10/14 这里应该有一个rowkey的生成策略，目前只是简单做
-        Put put = new Put(Bytes.toBytes(8));
-        System.out.println(new Date());
-        put.addColumn(Bytes.toBytes("video"), Bytes.toBytes("vid"), HbaseController.getSource(new File("d://test.mp4")));
+        Put put = new Put(Bytes.toBytes(rowkey));
+        put.addColumn(Bytes.toBytes("video"), Bytes.toBytes("vid"), HbaseController.getSource(new File(path)));
         table.put(put);
-        System.out.println(new Date());
     }
 
-    public static void download(String tableName) throws Exception {
+    public static byte[] getImageByRowKey(String tableName, int rowkey) throws Exception {
         Table table = connection.getTable(TableName.valueOf(tableName));
-        Get get1 = new Get(Bytes.toBytes(11));
+        Get get1 = new Get(Bytes.toBytes(rowkey));
         Result result = table.get(get1);
-        result.getExists();
-//        result.getValue(Bytes.toBytes("video"), Bytes.toBytes("vid"));
-        System.out.println(result);
-
+        byte[] resultb = null;
+        for (Cell cell : result.rawCells()) {
+            resultb = CellUtil.cloneValue(cell);
+        }
+        return resultb;
 
     }
 
-    public static void main(String[] args) throws Exception {
-//        HbaseController.create("cjtest2");
-//        HbaseController.upload("cjtest2");
-        System.out.println(new Date());
-        HbaseController.download("cjtest2");
-        System.out.println(new Date());
-
+    public static void main(String[] args)throws  Exception {
+        HbaseController.upload("cjtest2","d:/test.jpg",13);
+        HbaseController.upload("cjtest2","d:/testafter.jpg",14);
     }
 }
 
