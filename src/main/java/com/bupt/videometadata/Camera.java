@@ -43,8 +43,8 @@ public class Camera implements Serializable {
         typemap = null;
     }
 
-    //2015-1-1 0:0:0,bitmap的起始时间
-    private final static Long STARTDATE = 1420041600l;
+    //2015-1-1 0:0:0,bitmap的起始时间1420070400
+    public final static Long STARTDATE = 1420041600l;
 
     private int frameRate;
 
@@ -77,11 +77,11 @@ public class Camera implements Serializable {
 
     public List<VideoMetaData> findMetaDatas(Long start, Long end, String name) {
         Long startindex = start;
-        if (typemap.get(name).equals(VideoMetaDataType.IMG_ARRAY)) {
-            startindex = map.get(name).findStart(start, end);
-            if (startindex < 0) return null;
-        }
-        return videoList.findFiles(start, end).stream()
+//        if (typemap.get(name).equals(VideoMetaDataType.IMG_ARRAY)) {
+//            startindex = map.get(name).findStart(start, end)==-1?STARTDATE: map.get(name).findStart(start, end);
+////            if (startindex < 0) return null;
+//        }
+        return videoList.findFiles(startindex, end).stream()
                 .map(item -> item.getVideoMetaDatas().get(name)).collect(Collectors.toList());
 
     }

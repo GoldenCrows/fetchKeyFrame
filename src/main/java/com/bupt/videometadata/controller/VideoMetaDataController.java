@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/metadata")
+@RequestMapping("/v1")
 public class VideoMetaDataController {
 
     @GetMapping("/image")
@@ -56,27 +57,37 @@ public class VideoMetaDataController {
     @ResponseBody
     public List<String> getRowKeys(
             @RequestParam(value = "typename", defaultValue = "") String typename,
-            @RequestParam(value = "starttime", defaultValue = "2016-1-1 0:0:0") String starttime,
-            @RequestParam(value = "endtime", defaultValue = "") String endtime,
+            @RequestParam(value = "starttime") Long starttime,
+            @RequestParam(value = "endtime") Long endtime,
             @RequestParam(value = "geohash", defaultValue = "") String geohash) {
         try {
-            Long start = DateUtil.transfer(starttime);
-            Long end = endtime.equals("") ? new Date().getTime() / 1000 : DateUtil.transfer(endtime);
+//            Long start = DateUtil.transfer(starttime);
+//            Long end = endtime.equals("") ? new Date().getTime() / 1000 : DateUtil.transfer(endtime);
             VideoMetaDataType type = Server.manager.getCamera(geohash).getTypeByName(typename);
-            System.out.println(start+"  "+end+"  "+type);
+            System.out.println(starttime+"  "+endtime+"  "+type);
             if (type == null) return null;
             if (type.equals(VideoMetaDataType.IMG_ARRAY)) {
-                List<String> result = new ArrayList<String>();
-                Server.manager.getCamera(geohash).findMetaDatas(start, end, typename).stream().map(item ->
+//                List<String> result = new ArrayList<String>();
+//                Server.manager.getCamera(geohash).findMetaDatas(starttime, endtime, typename).stream().map(item ->
+//                        ((VideoMetaDataImgArray) item.getValue()).getArray()).forEach(item ->
+//                        item.forEach(itemitem ->
+//                                result.add(itemitem.getPath()))
+//                );
+               List<VideoMetaDataImg> result=new ArrayList<>();
+                Server.manager.getCamera(geohash).findMetaDatas(starttime, endtime, typename).stream().map(item ->
                         ((VideoMetaDataImgArray) item.getValue()).getArray()).forEach(item ->
                         item.forEach(itemitem ->
-                                result.add(itemitem.getPath()))
+                               result.add(itemitem))
                 );
-                return result;
+
+                return result.stream().filter(item->
+                        (item.getFrame()/30+Server.manager.getCamera(geohash).STARTDATE<endtime)&
+                                (item.getFrame()/30+Server.manager.getCamera(geohash).STARTDATE>starttime)
+                ).map(item->item.getPath()).collect(Collectors.toList());
             }
             if(type.equals((VideoMetaDataType.IMG))){
                 List<String> result = new ArrayList<String>();
-                Server.manager.getCamera(geohash).findMetaDatas(start, end, typename).stream().map(item ->
+                Server.manager.getCamera(geohash).findMetaDatas(starttime, endtime, typename).stream().map(item ->
                         ((VideoMetaDataImg) item.getValue())).forEach(item ->
                                 result.add(item.getPath())
                 );

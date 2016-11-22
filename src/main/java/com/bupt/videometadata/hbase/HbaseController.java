@@ -79,6 +79,14 @@ public class HbaseController {
         table.put(put);
     }
 
+    public static void upload(String tableName, File file, int rowkey) throws Exception {
+        Table table = connection.getTable(TableName.valueOf(tableName));
+        //// TODO: 2016/10/14 这里应该有一个rowkey的生成策略，目前只是简单做
+        Put put = new Put(Bytes.toBytes(rowkey));
+        put.addColumn(Bytes.toBytes("video"), Bytes.toBytes("vid"), HbaseController.getSource(file));
+        table.put(put);
+    }
+
     public static byte[] getImageByRowKey(String tableName, int rowkey) throws Exception {
         Table table = connection.getTable(TableName.valueOf(tableName));
         Get get1 = new Get(Bytes.toBytes(rowkey));

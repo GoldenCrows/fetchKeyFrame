@@ -33,7 +33,8 @@ public class VideoList implements Serializable {
         //分别查start和end在哪个文件中，返回其中的所有
         int startIndes = find(start);
         int endIndes = find(end);
-        return videoFileDatas.subList(startIndes, endIndes+1);
+        System.out.println(startIndes + "  " + endIndes);
+        return videoFileDatas.subList(startIndes, endIndes + 1);
     }
 
     public ArrayList<VideoFileData> getVideoFileDatas() {
@@ -49,7 +50,7 @@ public class VideoList implements Serializable {
         //因为天然是排好序的，所以用二分查找吧。
         int start = 0;
         int end = videoFileDatas.size() - 1;
-        while (start <= end) {
+        while (start < end) {
             int mid = (start + end) / 2;
             if (time >= videoFileDatas.get(mid).getStarttime() && time <= videoFileDatas.get(mid).getEndtime()) {
                 return mid;
@@ -61,7 +62,7 @@ public class VideoList implements Serializable {
                 end = mid;
             }
         }
-        return -1;
+        return start;
     }
 
     public VideoFileData findFile(Long time) {

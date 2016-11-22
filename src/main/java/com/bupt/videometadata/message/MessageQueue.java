@@ -8,6 +8,7 @@ import com.google.protobuf.ByteString;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,7 +25,7 @@ public class MessageQueue {
     //当生成结果的时候。所以需要定义三种消息格式，
     private static final ExecutorService THREADPOOL = Executors.newFixedThreadPool(3);
 
-    private static final JedisPool JEDIS_POOL = new JedisPool("127.0.0.1", 6379);
+    private static final JedisPool JEDIS_POOL = new JedisPool(MetaDataConfig.REDIS_URL, MetaDataConfig.REDIS_PORT);
 
 
     public static MSG getStoreVideoMessage(String geohash, Long starttime, Long endtime) {
@@ -128,7 +129,7 @@ public class MessageQueue {
         builder.setStarttime(starttime);
         builder.setEndtime(endtime);
         for (int i = 1; i <= imgs.size(); i++)
-            builder.setImg(i - 1, imgs.get(i - 1));
+            builder.addImg(imgs.get(i-1));
         builder.setName(ByteString.copyFromUtf8(name));
         msgBuilder.setAddImgArray(builder);
         msgBuilder.setType(MSGTYPE.Add_ImgArray);
@@ -244,11 +245,17 @@ public class MessageQueue {
     }
 
     public static void main(String[] args) {
-//        sendMessage(getAddMetaDataTypeMessage("1", "缩略图", VideoMetaDataType.IMG, null).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
+        sendMessage(getAddMetaDataTypeMessage("1", "大卡车", VideoMetaDataType.IMG_ARRAY, null).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
 //        ImgData
 //        sendMessage(getAddImgArrayMessage());
-//        sendMessage(getStoreVideoMessage("1",100000000l,1520041700l).toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
-        sendMessage(getAddImgMessage("1",100000000l,1520041700l,getImgDataMessage("13",12l,null),"缩略图").toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
+//        sendMessage(getStoreVideoMessage("1",1420041600l,1520041700l).toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
+//        sendMessage(getAddImgMessage("1",100000000l,1520041700l,getImgDataMessage("13",12l,null),"缩略图").toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
+//        List<ImgData> imgDatas = new ArrayList<>();
+//        imgDatas.add(getImgDataMessage("13", 50l, null));
+//        imgDatas.add(getImgDataMessage("14", 120l, null));
+//        imgDatas.add(getImgDataMessage("12", 399l, null));
+////
+//        sendMessage(getAddImgArrayMessage("1", 1420041600l, 1520041700l,imgDatas,"黄色").toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
     }
 
 

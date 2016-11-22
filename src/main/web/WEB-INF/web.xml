@@ -5,6 +5,10 @@
     <display-name>metadata</display-name>
     <distributable/>
 
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
@@ -52,7 +56,7 @@
 
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/metadata/*</url-pattern>
     </servlet-mapping>
 
     <session-config>
