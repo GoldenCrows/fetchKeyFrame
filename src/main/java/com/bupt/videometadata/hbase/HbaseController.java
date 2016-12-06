@@ -4,6 +4,7 @@ import io.leopard.javahost.JavaHost;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
 import org.apache.hadoop.hbase.client.*;
+import org.apache.hadoop.hbase.filter.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -13,6 +14,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -87,6 +91,14 @@ public class HbaseController {
         table.put(put);
     }
 
+    public static void upload(String tableName, byte[] bytes, int rowkey) throws Exception {
+        Table table = connection.getTable(TableName.valueOf(tableName));
+        //// TODO: 2016/10/14 这里应该有一个rowkey的生成策略，目前只是简单做
+        Put put = new Put(Bytes.toBytes(rowkey));
+        put.addColumn(Bytes.toBytes("video"), Bytes.toBytes("vid"), bytes);
+        table.put(put);
+    }
+
     public static byte[] getImageByRowKey(String tableName, int rowkey) throws Exception {
         Table table = connection.getTable(TableName.valueOf(tableName));
         Get get1 = new Get(Bytes.toBytes(rowkey));
@@ -96,6 +108,46 @@ public class HbaseController {
             resultb = CellUtil.cloneValue(cell);
         }
         return resultb;
+    }
+
+    public static void scan(String tableName) throws IOException {
+        Table table = connection.getTable(TableName.valueOf(tableName));
+        Scan scan=new Scan();
+        scan.setMaxVersions();
+        scan.setBatch(1000);
+        scan.setFilter(new FirstKeyOnlyFilter());
+        ResultScanner resultScanner = table.getScanner(scan);
+        int rowCount=0;
+        for (Result result : resultScanner) {
+            rowCount += result.size();
+            if(rowCount%1000==0) System.out.println(rowCount);
+        }
+
+        System.out.println(rowCount);
+        resultScanner.close();
+    }
+
+    public static void main(String[] args) throws IOException {
+//        HbaseController.scan("cjtest2");
+        List<List<String>> list=new ArrayList<>(9);
+        for(int j=1;j<=9;j++){
+            list.add(new ArrayList<>());
+        }
+
+        for(int i=1;i<=100000;i++)
+        {
+            for(int j=1;j<=9;j++){
+                list.get(j-1).add(i+"");
+            }
+        }
+        List<String>result=new ArrayList<>();
+        System.out.println(new Date());
+        for(int j=1;j<=9;j++){
+            result.addAll(list.get(j-1));
+        }
+        System.out.println(result.size());
+        System.out.println(new Date());
+        while(true){}
 
     }
 

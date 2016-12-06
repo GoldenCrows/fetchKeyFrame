@@ -75,6 +75,7 @@ public class Camera implements Serializable {
         return videoList.findFiles(start, end);
     }
 
+
     public List<VideoMetaData> findMetaDatas(Long start, Long end, String name) {
         Long startindex = start;
 //        if (typemap.get(name).equals(VideoMetaDataType.IMG_ARRAY)) {
@@ -115,7 +116,7 @@ public class Camera implements Serializable {
 
         if (metaData.getType() == VideoMetaDataType.IMG_ARRAY) {
             ((VideoMetaDataImgArray) metaData.getValue()).getArray().stream().forEach(item ->
-                    map.get(metaData.getName()).set(fileData.getStarttime() + item.getFrame() / 30)
+                    map.get(metaData.getName()).set( item.getFrame() )
 
             );
         }

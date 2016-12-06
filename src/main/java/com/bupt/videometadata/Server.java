@@ -8,13 +8,14 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author Che Jin <jotline@github>
  */
 public class Server {
     //这个类用来放所有的东西,负责维护整个系统的摄像头结构，负责开启消息队列接收服务，维持配置，维持持久化服务
-    public static MetaDataManager manager;
+    public static MetaDataManager manager=new MetaDataManager(10);
 
     static{
         MetaDataConfig.init();
@@ -25,7 +26,7 @@ public class Server {
     public static void  init() throws Exception{
         //整体落地到redis不可靠，需要维护一个操作队列，把所有的操作都保持在队列中，强时效性，只需要不断读取队列中的即可
         //或者抛弃一部分的性能，引入分布式锁
-        manager=new MetaDataManager(10);
+        Date last=new Date();
         manager.addCamera("1",new Camera(30));
         manager.addCamera("2",new Camera(30));
         manager.addCamera("3",new Camera(30));
@@ -36,6 +37,9 @@ public class Server {
                     pubSub.onMessage(null,item)
             );
         }
+        Date now=new Date();
+        System.out.println("take time:"+(now.getTime()-last.getTime()));
+
         MessageQueue.reciveMessage(MetaDataConfig.REDIS_RECIVE_MESSAGE, manager);
 
     }

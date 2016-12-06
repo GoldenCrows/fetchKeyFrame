@@ -13,6 +13,7 @@ enum MSGTYPE {
     Add_Num = 0x00000015;
     Add_Enum = 0x00000016;
     Add_Text = 0x00000017;
+    Add_ImgMap = 0x00000018;
 }
 
 enum METADATATYPE {
@@ -23,6 +24,16 @@ enum METADATATYPE {
     Num = 0x00000005;
     Enum = 0x00000006;
     Text = 0x00000007;
+    ImgMap = 0x00000008;
+}
+
+message AddImgMap {
+    required string geohash = 1;
+    required int64 starttime = 2;
+    required int64 endtime = 3;
+    repeated ImgData img = 4;
+    required bytes name = 5; //属性名称，如京A XXXXX
+    required bytes type = 6; //属性值，如车牌号
 }
 
 message StoreVideo {
@@ -35,7 +46,7 @@ message AddMetaDataType {
     required bytes name = 1;
     required METADATATYPE type = 2;
     repeated bytes enumItem = 3; //只对enum类型有用，用来说明enum由哪些item组成
-    required string geohash=4;
+    required string geohash = 4;
 }
 
 message ImgData {
@@ -120,4 +131,5 @@ message MSG {
     optional AddNum addNum = 8;
     optional AddEnum addEnum = 9;
     optional AddText addText = 10;
+    optional AddImgMap addImgMap = 11;
 }

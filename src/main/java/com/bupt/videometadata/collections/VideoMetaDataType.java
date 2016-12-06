@@ -13,5 +13,6 @@ public enum VideoMetaDataType implements Serializable{
     VIDEO_ARRAY,//视频列表
     NUM,        //数值
     ENUM,       //枚举
-    TEXT;       //文字
+    TEXT,       //文字
+    IMG_MAP;
 }

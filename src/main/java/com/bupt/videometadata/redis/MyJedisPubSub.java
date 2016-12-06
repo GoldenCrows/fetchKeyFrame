@@ -28,14 +28,11 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
 
     @Override
     public void onUnsubscribe(byte[] channel, int number) {
-        System.out.println("channel: " + channel);
-        System.out.println("number :" + number);
+
     }
 
     @Override
     public void onSubscribe(byte[] channel, int number) {
-        System.out.println("channel: " + channel);
-        System.out.println("number :" + number);
     }
 
     @Override
@@ -58,6 +55,9 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
             String type = msg.getType().name();
             if (type.equals("Store_Video")) {
                 processStore_Video(msg);
+            }
+            if (type.equals("Add_ImgMap")) {
+                processAdd_ImgMap(msg);
             }
             if (type.equals("Add_MetaDataType")) {
                 processAdd_MetaDataType(msg);
@@ -83,6 +83,35 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
         }
     }
 
+    private boolean processAdd_ImgMap(MSG msg) {
+        AddImgMap add_ImgMap = msg.getAddImgMap();
+        if (add_ImgMap == null) return false;
+        VideoFileData videoFileData = manager.getCamera(add_ImgMap.getGeohash()).findFile(add_ImgMap.getStarttime() + 1);
+        VideoMetaData metaData = videoFileData.getVideoMetaDatas().get(add_ImgMap.getType().toStringUtf8());
+        if (metaData == null) {
+            metaData = new VideoMetaData();
+            metaData.setType(VideoMetaDataType.IMG_MAP);
+            metaData.setName(add_ImgMap.getType().toStringUtf8());//type才是名字，type是车牌号，name是具体车牌号
+            //// TODO: 2016/11/12  这里有些臃肿了，可以改一下
+        }
+        VideoMetaDataImgMap imgMap = (VideoMetaDataImgMap) metaData.getValue();
+        if (imgMap == null) {
+            imgMap = new VideoMetaDataImgMap();
+        }
+
+        if (imgMap.getMap().get(add_ImgMap.getName().toStringUtf8()) == null) {
+            VideoMetaDataImgArray value = new VideoMetaDataImgArray();
+            value.setArray(transferImgList(add_ImgMap.getImgList()));
+            imgMap.getMap().put(add_ImgMap.getName().toStringUtf8(), value);
+        } else {
+            imgMap.getMap().get(add_ImgMap.getName().toStringUtf8()).getArray().addAll(transferImgList(add_ImgMap.getImgList()));
+        }
+        metaData.setValue(imgMap);
+        videoFileData.pushMetaData(add_ImgMap.getType().toStringUtf8(), metaData);
+
+        return true;
+    }
+
 
     private boolean processAdd_Num(MSG msg) {
         AddNum addnum = msg.getAddNum();
@@ -97,7 +126,6 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
         metaData.setValue(value);
         videoFileData.pushMetaData(addnum.getName().toStringUtf8(), metaData);
 
-        System.out.println(manager.getCamera(addnum.getGeohash()));
         return true;
     }
 
@@ -114,7 +142,6 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
         metaData.setValue(value);
         videoFileData.pushMetaData(addVideoArray.getName().toStringUtf8(), metaData);
 
-        System.out.println(manager.getCamera(addVideoArray.getGeohash()));
         return true;
     }
 
@@ -147,7 +174,7 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
                 return Arrays.asList(itemitem.split(","));
             }).collect(Collectors.toList());
             int[][] coodinates = new int[4][2];
-            if (coodinatesList != null&&coodinatesList.size()==4)
+            if (coodinatesList != null && coodinatesList.size() == 4)
                 for (int i = 1; i <= 4; i++) {
                     coodinates[i - 1][0] = Integer.parseInt(coodinatesList.get(i - 1).get(0));
                     coodinates[i - 1][1] = Integer.parseInt(coodinatesList.get(i - 1).get(1));
@@ -171,7 +198,6 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
         metaData.setValue(value);
         videoFileData.pushMetaData(addVideo.getName().toStringUtf8(), metaData);
 
-        System.out.println(manager.getCamera(addVideo.getGeohash()));
         return true;
     }
 
@@ -181,14 +207,13 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
         //加一秒肯定在需要的文件中啦，不可能这个视频连一秒都没有吧
         VideoFileData videoFileData = manager.getCamera(addImgArray.getGeohash()).findFile(addImgArray.getStarttime() + 1);
         VideoMetaData metaData = new VideoMetaData();
-        metaData.setType(VideoMetaDataType.VIDEO_ARRAY);
+        metaData.setType(VideoMetaDataType.IMG_ARRAY);
         metaData.setName(addImgArray.getName().toStringUtf8());
         VideoMetaDataImgArray value = new VideoMetaDataImgArray();
         value.setArray(transferImgList(addImgArray.getImgList()));
         metaData.setValue(value);
         videoFileData.pushMetaData(addImgArray.getName().toStringUtf8(), metaData);
 
-        System.out.println(manager.getCamera(addImgArray.getGeohash()));
         return true;
     }
 
@@ -205,7 +230,6 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
         metaData.setValue(value);
         videoFileData.pushMetaData(addImg.getName().toStringUtf8(), metaData);
 
-        System.out.println(manager.getCamera(addImg.getGeohash()));
 
         return true;
     }
@@ -222,11 +246,9 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
         if (addMetaDataType.getType().name().equals("Num")) type = VideoMetaDataType.NUM;
         if (addMetaDataType.getType().name().equals("Enum")) type = VideoMetaDataType.ENUM;
         if (addMetaDataType.getType().name().equals("Text")) type = VideoMetaDataType.TEXT;
+        if (addMetaDataType.getType().name().equals("ImgMap")) type = VideoMetaDataType.IMG_MAP;
         camera.addMetaDataType(addMetaDataType.getName().toStringUtf8(), type);
         //todo 这里没有考虑到enum的list         addMetaDataType.getEnumItemList();
-
-        System.out.println("recived" + manager.getCamera(addMetaDataType.getGeohash()));
-
         return true;
 
     }
@@ -237,7 +259,6 @@ public class MyJedisPubSub extends BinaryJedisPubSub {
         Camera camera = manager.getCamera(storeVideo.getGeohash());
         camera.storeVideo(storeVideo.getStarttime(), storeVideo.getEndtime());
 
-        System.out.println(manager.getCamera(storeVideo.getGeohash()));
 
         return true;
     }

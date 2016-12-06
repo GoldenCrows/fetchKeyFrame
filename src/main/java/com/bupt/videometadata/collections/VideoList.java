@@ -37,6 +37,8 @@ public class VideoList implements Serializable {
         return videoFileDatas.subList(startIndes, endIndes + 1);
     }
 
+    public List<VideoFileData> findFilesByNum(int num){return videoFileDatas.subList(0,num);}
+
     public ArrayList<VideoFileData> getVideoFileDatas() {
         return videoFileDatas;
     }

@@ -8,7 +8,6 @@ import com.google.protobuf.ByteString;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -129,7 +128,7 @@ public class MessageQueue {
         builder.setStarttime(starttime);
         builder.setEndtime(endtime);
         for (int i = 1; i <= imgs.size(); i++)
-            builder.addImg(imgs.get(i-1));
+            builder.addImg(imgs.get(i - 1));
         builder.setName(ByteString.copyFromUtf8(name));
         msgBuilder.setAddImgArray(builder);
         msgBuilder.setType(MSGTYPE.Add_ImgArray);
@@ -187,6 +186,25 @@ public class MessageQueue {
         return msgBuilder.build();
     }
 
+    public static MSG getAddImgMap(String geohash,
+                                   Long starttime,
+                                   Long endtime,
+                                   List<ImgData> imgs,
+                                   String name,
+                                   String type) {
+        MSG.Builder msgBuilder = MSG.newBuilder();
+        AddImgMap.Builder builder = AddImgMap.newBuilder();
+        builder.setGeohash(geohash);
+        builder.setStarttime(starttime);
+        builder.setEndtime(endtime);
+        for (int i = 1; i <= imgs.size(); i++)
+            builder.addImg(imgs.get(i - 1));
+        builder.setName(ByteString.copyFromUtf8(name));
+        builder.setType(ByteString.copyFromUtf8(type));
+        msgBuilder.setType(MSGTYPE.Add_ImgMap);
+        msgBuilder.setAddImgMap(builder);
+        return msgBuilder.build();
+    }
 
     public static MSG getAddMetaDataTypeMessage(String geohash, String name, VideoMetaDataType type, List<String> items) {
         MSG.Builder msgBuilder = MSG.newBuilder();
@@ -207,6 +225,8 @@ public class MessageQueue {
             builder.setType(METADATATYPE.Text);
         if (type.name().equals("NUM"))
             builder.setType(METADATATYPE.Num);
+        if (type.name().equals("IMG_MAP"))
+            builder.setType(METADATATYPE.ImgMap);
         if (items != null)
             for (int i = 1; i <= items.size(); i++) {
                 builder.setEnumItem(i - 1, ByteString.copyFromUtf8(items.get(i - 1)));
@@ -217,26 +237,31 @@ public class MessageQueue {
         return msgBuilder.build();
     }
 
-    public static void sendMessage(byte[] str, String channel) {
+    public  void sendMessage(byte[] str, String channel) {
         //execute无返回值，submit有返回值
-        new Thread(new Runnable() {
-            public void run() {
-                try (Jedis jedis = JEDIS_POOL.getResource()) {
-                    jedis.publish(channel.getBytes(), str);
-                    jedis.rpush(MetaDataConfig.REDIS_COMMEND_QUEUE.getBytes(), str);
-                }
+        new Thread(() -> {
+            try (Jedis jedis = JEDIS_POOL.getResource()) {
+                jedis.publish(channel.getBytes(), str);
+                jedis.rpush(MetaDataConfig.REDIS_COMMEND_QUEUE.getBytes(), str);
+            }
+        }).start();
+    }
+
+    public  void sendMessageTo190(byte[] str, String channel) {
+        //execute无返回值，submit有返回值
+        new Thread(() -> {
+            try (Jedis jedis = new Jedis("10.103.249.190", 6379)) {
+                jedis.publish(channel.getBytes(), str);
+                jedis.rpush(MetaDataConfig.REDIS_COMMEND_QUEUE.getBytes(), str);
             }
         }).start();
     }
 
     public static void reciveMessage(String channel, MetaDataManager manager) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try (Jedis jedis = JEDIS_POOL.getResource()) {
-                        jedis.subscribe(new MyJedisPubSub(manager), channel.getBytes());
-                    }
+        new Thread(() -> {
+            while (true) {
+                try (Jedis jedis = JEDIS_POOL.getResource()) {
+                    jedis.subscribe(new MyJedisPubSub(manager), channel.getBytes());
                 }
             }
         }).start();
@@ -245,10 +270,11 @@ public class MessageQueue {
     }
 
     public static void main(String[] args) {
-        sendMessage(getAddMetaDataTypeMessage("1", "大卡车", VideoMetaDataType.IMG_ARRAY, null).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
+        new MessageQueue().sendMessageTo190(getAddMetaDataTypeMessage("2", "人脸", VideoMetaDataType.IMG_ARRAY, null).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
 //        ImgData
 //        sendMessage(getAddImgArrayMessage());
-//        sendMessage(getStoreVideoMessage("1",1420041600l,1520041700l).toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
+        new MessageQueue().sendMessageTo190(getStoreVideoMessage("2",1420041600l,1520041700l).toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
+        while(true){}
 //        sendMessage(getAddImgMessage("1",100000000l,1520041700l,getImgDataMessage("13",12l,null),"缩略图").toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
 //        List<ImgData> imgDatas = new ArrayList<>();
 //        imgDatas.add(getImgDataMessage("13", 50l, null));
