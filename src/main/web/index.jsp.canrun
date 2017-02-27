@@ -11,107 +11,43 @@
     <title>metadata</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/echarts.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        function loadInfo() {
-            $("#mbsb").removeClass("active")
-            $("#info").removeClass("active")
-            $("#info").addClass("active")
+        function loadCamera(type) {
             $("#camera").html("")
-            $("#content").html("<div class=\"col-md-offset-1 col-md-10 alert alert-info\">各颜色车辆图片数量按月统计图</div>" +
-                    "<div id=\"timeinfo\" class=\"col-md-offset-1 col-md-10  thumbnail\" style=\"height: 500px\"></div>")
+            $("#cameratype").html("")
+            $("#time").html("")
+            $("#img").html("")
+            $("#commit").html("")
+            $("#commit2").html("")
 
-            $("#content").append("<div id=\"colorinfo\" class=\"col-md-offset-1 col-md-4  thumbnail\" style=\"height: 200px\"></div>" +
-                    "<div id=\"typeinfo\" class=\"col-md-offset-1 col-md-4  thumbnail\" style=\"height: 200px\"></div>")
-            var myChart = echarts.init(document.getElementById('timeinfo'));
-            var option = {
-                title: {
-                    text: '各颜色车辆图片数量按月统计图'
-                },
-                tooltip: {},
-                legend: {
-                    data: ['车辆图片数量']
-                },
-                xAxis: {
-                    data: ["2016年1月", "2016年2月", "2016年3月", "2016年4月", "2016年5月", "2016年6月", "2016年7月", "2016年8月", "2016年9月", "2016年10月", "2016年11月", "2016年12月"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '红色',
-                    color: 'red',
-                    type: 'bar',
-                    data: [6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610]
-                },
-                    {
-                        name: '白色',
-                        color: 'white',
-                        type: 'bar',
-                        data: [29000, 66100, 66100, 66100, 66100, 66100, 66100, 66100, 66100, 66100, 66100, 66100]
-                    }]
-            };
-            myChart.setOption(option);
-            var myChart1 = echarts.init(document.getElementById('typeinfo'));
-            var option1 = {
-                title: {
-                    text: 'ECharts 入门示例'
-                },
-                tooltip: {},
-                legend: {
-                    data: ['销量']
-                },
-                xAxis: {
-                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '销量',
-                    type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20]
-                }]
-            };
-            myChart1.setOption(option1);
-            var myChart2 = echarts.init(document.getElementById('colorinfo'));
-            var option2 = {
-                title: {
-                    text: 'ECharts 入门示例'
-                },
-                tooltip: {},
-                legend: {
-                    data: ['销量']
-                },
-                xAxis: {
-                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '销量',
-                    type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20]
-                }]
-            };
-            myChart2.setOption(option2);
-        }
-        function loadCamera() {
             $("#mbsb").removeClass("active")
-            $("#info").removeClass("active")
-            $("#mbsb").addClass("active")
+            $("#gtsb").removeClass("active")
+            $("#xwjc").removeClass("active")
+
+            if(type==3)
+                $("#xwjc").addClass("active")
+            if(type==2)
+                $("#gtsb").addClass("active")
+            if(type==1)
+                $("#mbsb").addClass("active")
+            $("#camera").append("摄像头编号：")
             $.ajax({
                 type: "GET",
                 url: "/metadata/v1/camera",
                 async: false,
                 success: function (data) {
                     for (var key in data) {
-                        $("#camera").append("<button  type=\"button\" class=\"btn btn-primary\" onclick='showType(" + data[key] + ")'>" + data[key] + "</button>")
+                        $("#camera").append("<button  type=\"button\" class=\"btn btn-primary\" onclick='showType(" + data[key] + "," + type + ")'>" + data[key] + "</button>")
                     }
                 },
                 dataType: "json"
             });
         }
 
-        function showType(geohash) {
+        function showType(geohash, type) {
             $("#cameratype").html("")
             $("#time").html("")
             $("#img").html("")
@@ -123,25 +59,40 @@
                 async: false,
                 success: function (data) {
                     $("#time").html("")
-                    $("#cameratype").append(" <label for=\"name\">选择属性</label>")
-                    $("#cameratype").append("<select class=\"form-control\"  id=\"shuxing\">")
-                    $("#cameratype").append("</select >")
+                    $("#cameratype").append("<div class=\"col-md-2 col-xs-2 col-sm-2\" style=\"margin-left: 50px\">"+
+                    "<span>选择属性：</span>"+
+                    "<select id=\"shuxing\" class=\"form-control\"></select></div>")
                     var Data = data;
                     var flag = false
 
                     for (var key in Data) {
                         flag = true
-                        $("#shuxing").append("<option>" + key + ":" + Data[key] + "</option>");
+                        if ((type == 1 && Data[key] == "IMG_ARRAY") || (type == 2 && Data[key] == "IMG_MAP") || (type == 3 && Data[key] == "VIDEO_ARRAY"))
+                            $("#shuxing").append("<option>" + key + ":" + Data[key] + "</option>");
                     }
 
                     if (flag) {
-                        $("#time").append(" StartTime: <input type=\"datetime-local\" name=\"starttime\" id=\"starttime\"/><br />")
-                        $("#time").append(" EndTime: <input type=\"datetime-local\" name=\"endtime\" id=\"endtime\"/><br />")
-                        $("#commit").append(" <button  type=\"button\" class=\"btn btn-primary\" onclick='showImg(" + geohash + ",1)'> 按时间进行查询</button><br />")
+                        if(type==1||type==3){
+                            $("#time").append("<div class=\"col-md-2 col-xs-2 col-sm-2\" style=\"margin-left: 50px\">"+
+                            "<span>开始时间：</span>"+
+                                    "<input type=\"datetime-local\" name=\"starttime\" id=\"starttime\"/></div>")
+                            $("#time").append(" <div class=\"col-md-2 col-xs-2 col-sm-2\" style=\"margin-left: 50px\">"+
+                                    "<span>结束时间：</span>"+
+                                    " <input type=\"datetime-local\" name=\"endtime\" id=\"endtime\"/>")
+                        }
+                        else{
+                            $("#time").append("<div class=\"col-md-2 col-xs-2 col-sm-2\" style=\"margin-left: 50px\">"+
+                                    "<span>开始时间：</span>"+
+                                    "<input type=\"datetime-local\" name=\"starttime\" id=\"starttime\"/></div>")
+                            $("#time").append(" <div class=\"col-md-2 col-xs-2 col-sm-2\" style=\"margin-left: 50px\">"+
+                                    "<span>结束时间：</span>"+
+                                    " <input type=\"datetime-local\" name=\"endtime\" id=\"endtime\"/>")
+                            $("#time").append(" <div class=\"col-md-2 col-xs-2 col-sm-2\" style=\"margin-left: 50px\">"+
+                                    "<span>查询条件：</span>"+"<input  type=\"text\" id=\"text\"/>")
+                            $("#commit2").append("<div class=\"col-md-2 col-xs-2 col-sm-2\" style=\"margin-left: 50px\">"+
+                                    "<span>提交：</span>"+" <button  type=\"button\" class=\"btn btn-primary\" onclick='showImg2(" + geohash + ",1)'> 按条件进行查询</button>")
 
-                        $("#commit2").append(" 查询条件：<input  type=\"text\" id=\"text\"\\><br />")
-                        $("#commit2").append(" <button  type=\"button\" class=\"btn btn-primary\" onclick='showImg2(" + geohash + ",1)'> 按条件进行查询</button>")
-
+                        }
                     }
 
                 },
@@ -176,9 +127,9 @@
                             flag = false
                         }
                         else {
-                            $("#img").append("<div class=\"col-sm-4\" style='height: 500px;'>" +
-                                    " <a href=\"#\" class=\"thumbnail\"  style='height: 400px;'>" +
-                                    " <img src=\"http://10.103.249.190:8080/metadata/v1/image?rowkey=" + data[key].split("`")[0] + " \"border=0 width='300' />" +
+                            $("#img").append("<div class=\"col-sm-4\">" +
+                                    " <a href=\"#\" class=\"thumbnail\">" +
+                                    " <img src=\"http://10.103.249.190:8080/metadata/v1/image?rowkey=" + data[key].split("`")[0] + " \"border=0 width=\"300\" height=\"300\"/>" +
                                     "</a><p><a onclick=\"showModal(" + "\'" + data[key].split("`")[1] + "\'" + "," + geohash + ")\">data: " + data[key].split("`")[1] + "</a></p></div>")
                         }
                     }
@@ -215,11 +166,24 @@
                 url: "/metadata/v1/rowkeysfromMap?keyword=" + keyword + "&typename=" + name + "&starttime=" + starttime + "&endtime=" + endtime + "&geohash=" + geohash,
                 async: false,
                 success: function (data) {
+                    $("#img").html("")
+                    var flag = true
                     for (var key in data) {
-                        $("#img").append("<div class=\"col-sm-4\">" +
-                                " <a href=\"#\" class=\"thumbnail\">" +
-                                " <img src=\"http://10.103.249.190:8080/metadata/v1/image?rowkey=" + data[key] + " \"border=0  />" +
-                                "</a> </div>")
+                        if (flag) {
+                            $("#img").append("<p>共有" + data[key] + "条满足条件的结果</p>")
+                            $("#img").append("<button  type=\"button\" class=\"btn btn-primary\" onclick=\"download(" + "\'" + name + "\'" + "," + starttime + "," + +endtime + "," + +geohash + ")\"> 下载全部照片</button>")
+                            $("#img").append("<ul class=\"pager\">" +
+                                    "<li class=\"previous disabled\"><a onclick=\"showImg(" + geohash + "," + (page - 1) + ")\">&larr; Older</a></li>" +
+                                    "<li class=\"next\"><a onclick=\"showImg(" + geohash + "," + (page + 1) + ")\">Newer &rarr;</a></li>" +
+                                    "</ul>")
+                            flag = false
+                        }
+                        else {
+                            $("#img").append("<div class=\"col-sm-4\">" +
+                                    " <a href=\"#\" class=\"thumbnail\">" +
+                                    " <img src=\"http://10.103.249.190:8080/metadata/v1/image?rowkey=" + data[key].split("`")[0] + " \"border=0 width=\"300\" height=\"300\"/>" +
+                                    "</a><p><a onclick=\"showModal(" + "\'" + data[key].split("`")[1] + "\'" + "," + geohash + ")\">data: " + data[key].split("`")[1] + "</a></p></div>")
+                        }
                     }
                 },
                 dataType: "json"
@@ -228,7 +192,7 @@
     </script>
 </head>
 
-<body>
+<body onload="loadCamera(1)">
 <div class="container">
 
 
@@ -253,20 +217,19 @@
 
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">交通监控视频数据存储展示平台</a>
+            <a class="navbar-brand" href="#">视频元数据检索系统</a>
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li class="" id="info"><a onclick="loadInfo()">存储情况概览</a></li>
-                <li class="active" id="mbsb"><a onclick="loadCamera()">车辆检索</a></li>
+                <li class="active" id="mbsb"><a onclick="loadCamera(1)">目标识别</a></li>
+                <li id="gtsb"><a onclick="loadCamera(2)">个体识别</a></li>
+                <li id="xwjc"><a onclick="loadCamera(3)">行为检测</a></li>
             </ul>
         </div>
     </nav>
     <div class="container">
-        <div class="container panel-group" id="content">
-        </div>
         <div class="container" id="camera">
-            <h4>Camera id:</h4>
+            <h4>摄像头编号:</h4>
         </div>
         <div class="container" id="cameratype">
         </div>

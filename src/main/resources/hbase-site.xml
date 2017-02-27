@@ -38,7 +38,7 @@
 </property> 
 <property> 
 	<name>hbase.zookeeper.quorum</name> 
-	<value>10.103.249.191,10.103.240.42</value> 
+	<value>10.103.249.191,10.103.241.87</value>
 </property> 
 <property>  
 <name>hbase.client.keyvalue.maxsize</name>  

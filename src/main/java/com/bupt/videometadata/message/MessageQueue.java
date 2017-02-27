@@ -271,10 +271,12 @@ public class MessageQueue {
 
     public static void main(String[] args) {
         new MessageQueue().sendMessageTo190(getAddMetaDataTypeMessage("2", "人脸", VideoMetaDataType.IMG_ARRAY, null).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
+        new MessageQueue().sendMessageTo190(getAddMetaDataTypeMessage("3", "人脸", VideoMetaDataType.IMG_ARRAY, null).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
+        new MessageQueue().sendMessageTo190(getAddMetaDataTypeMessage("1", "车牌", VideoMetaDataType.IMG_MAP, null).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
 //        ImgData
 //        sendMessage(getAddImgArrayMessage());
-        new MessageQueue().sendMessageTo190(getStoreVideoMessage("2",1420041600l,1520041700l).toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
-        while(true){}
+//        new MessageQueue().sendMessageTo190(getStoreVideoMessage("2",1420041600l,1520041700l).toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
+
 //        sendMessage(getAddImgMessage("1",100000000l,1520041700l,getImgDataMessage("13",12l,null),"缩略图").toByteArray(),MetaDataConfig.REDIS_RECIVE_MESSAGE);
 //        List<ImgData> imgDatas = new ArrayList<>();
 //        imgDatas.add(getImgDataMessage("13", 50l, null));

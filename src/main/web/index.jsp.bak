@@ -11,93 +11,11 @@
     <title>metadata</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/echarts.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        function loadInfo() {
-            $("#mbsb").removeClass("active")
-            $("#info").removeClass("active")
-            $("#info").addClass("active")
-            $("#camera").html("")
-            $("#content").html("<div class=\"col-md-offset-1 col-md-10 alert alert-info\">各颜色车辆图片数量按月统计图</div>" +
-                    "<div id=\"timeinfo\" class=\"col-md-offset-1 col-md-10  thumbnail\" style=\"height: 500px\"></div>")
-
-            $("#content").append("<div id=\"colorinfo\" class=\"col-md-offset-1 col-md-4  thumbnail\" style=\"height: 200px\"></div>" +
-                    "<div id=\"typeinfo\" class=\"col-md-offset-1 col-md-4  thumbnail\" style=\"height: 200px\"></div>")
-            var myChart = echarts.init(document.getElementById('timeinfo'));
-            var option = {
-                title: {
-                    text: '各颜色车辆图片数量按月统计图'
-                },
-                tooltip: {},
-                legend: {
-                    data: ['车辆图片数量']
-                },
-                xAxis: {
-                    data: ["2016年1月", "2016年2月", "2016年3月", "2016年4月", "2016年5月", "2016年6月", "2016年7月", "2016年8月", "2016年9月", "2016年10月", "2016年11月", "2016年12月"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '红色',
-                    color: 'red',
-                    type: 'bar',
-                    data: [6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610, 6610]
-                },
-                    {
-                        name: '白色',
-                        color: 'white',
-                        type: 'bar',
-                        data: [29000, 66100, 66100, 66100, 66100, 66100, 66100, 66100, 66100, 66100, 66100, 66100]
-                    }]
-            };
-            myChart.setOption(option);
-            var myChart1 = echarts.init(document.getElementById('typeinfo'));
-            var option1 = {
-                title: {
-                    text: 'ECharts 入门示例'
-                },
-                tooltip: {},
-                legend: {
-                    data: ['销量']
-                },
-                xAxis: {
-                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '销量',
-                    type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20]
-                }]
-            };
-            myChart1.setOption(option1);
-            var myChart2 = echarts.init(document.getElementById('colorinfo'));
-            var option2 = {
-                title: {
-                    text: 'ECharts 入门示例'
-                },
-                tooltip: {},
-                legend: {
-                    data: ['销量']
-                },
-                xAxis: {
-                    data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-                },
-                yAxis: {},
-                series: [{
-                    name: '销量',
-                    type: 'bar',
-                    data: [5, 20, 36, 10, 10, 20]
-                }]
-            };
-            myChart2.setOption(option2);
-        }
         function loadCamera() {
-            $("#mbsb").removeClass("active")
-            $("#info").removeClass("active")
-            $("#mbsb").addClass("active")
             $.ajax({
                 type: "GET",
                 url: "/metadata/v1/camera",
@@ -176,10 +94,10 @@
                             flag = false
                         }
                         else {
-                            $("#img").append("<div class=\"col-sm-4\" style='height: 500px;'>" +
-                                    " <a href=\"#\" class=\"thumbnail\"  style='height: 400px;'>" +
-                                    " <img src=\"http://10.103.249.190:8080/metadata/v1/image?rowkey=" + data[key].split("`")[0] + " \"border=0 width='300' />" +
-                                    "</a><p><a onclick=\"showModal(" + "\'" + data[key].split("`")[1] + "\'" + "," + geohash + ")\">data: " + data[key].split("`")[1] + "</a></p></div>")
+                            $("#img").append("<div class=\"col-sm-4\">" +
+                                    " <a href=\"#\" class=\"thumbnail\">" +
+                                    " <img src=\"http://10.103.249.190:8080/metadata/v1/image?rowkey=" + data[key].split("`")[0] + " \"border=0 width=\"300\" height=\"300\"/>" +
+                                    "</a><p><a onclick=\"showModal(" +"\'"+ data[key].split("`")[1] + "\'"+ "," +geohash+")\">data: " + data[key].split("`")[1] + "</a></p></div>")
                         }
                     }
                 },
@@ -187,12 +105,12 @@
             });
         }
 
-        function showModal(time, geohash) {
+        function showModal(time,geohash){
             $("#kuangbody").html("")
-            $("#kuangbody").append("<video controls=\"controls\" width=\"550\">" +
-                    "<source src=\"http://10.103.249.190:8080/metadata/v1/video?time=" + time + "&geohash=" + geohash + "\" type=\"video/mp4\" />" +
-                    "Your browser does not support the video tag." +
-                    "</video>")
+            $("#kuangbody").append("<video controls=\"controls\" width=\"550\">"+
+            "<source src=\"http://10.103.249.190:8080/metadata/v1/video?time="+time+"&geohash="+geohash+"\" type=\"video/mp4\" />"+
+                    "Your browser does not support the video tag."+
+            "</video>")
 
             $("#kuang").modal('show')
         }
@@ -218,7 +136,7 @@
                     for (var key in data) {
                         $("#img").append("<div class=\"col-sm-4\">" +
                                 " <a href=\"#\" class=\"thumbnail\">" +
-                                " <img src=\"http://10.103.249.190:8080/metadata/v1/image?rowkey=" + data[key] + " \"border=0  />" +
+                                " <img src=\"http://10.103.249.190:8080/metadata/v1/image?rowkey=" + data[key] + " \"border=0 width=\"300\" height=\"300\"/>" +
                                 "</a> </div>")
                     }
                 },
@@ -228,11 +146,11 @@
     </script>
 </head>
 
-<body>
+<body onload="loadCamera()">
 <div class="container">
 
 
-    <div class="modal fade" id="kuang">
+    <div class="modal fade" id="kuang" >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -253,18 +171,10 @@
 
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">交通监控视频数据存储展示平台</a>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="" id="info"><a onclick="loadInfo()">存储情况概览</a></li>
-                <li class="active" id="mbsb"><a onclick="loadCamera()">车辆检索</a></li>
-            </ul>
+            <a class="navbar-brand" href="#">视频元数据检索系统</a>
         </div>
     </nav>
     <div class="container">
-        <div class="container panel-group" id="content">
-        </div>
         <div class="container" id="camera">
             <h4>Camera id:</h4>
         </div>
@@ -278,6 +188,7 @@
 
     </div>
 </div>
+
 
 
 </body>

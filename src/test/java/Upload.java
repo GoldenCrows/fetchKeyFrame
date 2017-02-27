@@ -6,6 +6,7 @@ import com.bupt.videometadata.proto.Message;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -163,10 +164,12 @@ public class Upload {
         for (File file1 : file.listFiles()) {
             String chepai = file1.getName().split("_")[4];
             List<Message.ImgData> imgDataList = new ArrayList<>();
-            HbaseController.upload("cjtest2", file1, rowkey + i);
-            imgDataList.add(MessageQueue.getImgDataMessage("" + (rowkey + i), (long) i, null));
+//            HbaseController.upload("cjtest2",HbaseController.getSource(file1),1420041600l,1422720000l,"1");
+
+//            HbaseController.upload("cjtest2", file1, rowkey + i);
+            imgDataList.add(MessageQueue.getImgDataMessage("" + (rowkey + i),  1420041600l+i, null));
             i++;
-            new MessageQueue().sendMessage(getAddImgMap("1", 1420041600l, 1520041700l, imgDataList, chepai, "车牌").toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
+            new MessageQueue().sendMessageTo190(getAddImgMap("1", 1420041600l, 1422720000l, imgDataList, chepai, "车牌").toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
 //
             System.out.println(chepai + " " + i);
         }
@@ -229,13 +232,19 @@ public class Upload {
                 zhenhao+=zhenping;
                 imgDataList.add(MessageQueue.getImgDataMessage("" + count++, dates[i-1][0]+zhenhao, null));
             }
-            new MessageQueue().sendMessageTo190(getAddImgArrayMessage("1", dates[i-1][0], dates[i-1][1], imgDataList, "小轿车").toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
+            new MessageQueue().sendMessageTo190(getAddImgArrayMessage("1", dates[i-1][0], dates[i-1][1], imgDataList, "SUV").toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
             System.out.println(new Date());
         }
         while(true){}
     }
+    @Test
+    public void addVideo() throws IOException {
+        File file=new File("D://little.mp4");
+        HbaseController.upload("video",HbaseController.getSource(file),1420041600l,1422720000l,"1");
+    }
+
     public void addInfo()throws Exception{
-        new MessageQueue().sendMessageTo190(getAddMetaDataTypeMessage("1", "小轿车", VideoMetaDataType.IMG_ARRAY, null).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
+        new MessageQueue().sendMessageTo190(getAddMetaDataTypeMessage("1", "SUV", VideoMetaDataType.IMG_ARRAY, null).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
         Thread.sleep(100);
         //一月到二月
         new MessageQueue().sendMessageTo190(getStoreVideoMessage("1", 1420041600l, 1422720000l).toByteArray(), MetaDataConfig.REDIS_RECIVE_MESSAGE);
